@@ -1,0 +1,270 @@
+/*!
+ * Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Roboto;
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 10px 0;
+    text-transform: none;
+    font-family: 'Noto', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+p {
+    margin: 0 0 10px;
+    font-size: 18px;
+    line-height: 1.5;
+    font-family: Roboto;
+}
+footer p, footer a {
+    margin: 0 0 35px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+footer{
+  background-color: #283a44;
+  font-family: 'Roboto', sans-serif;
+}
+md-toolbar img, md-toolbar a {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+a {
+    color: #42dca3;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+a:hover, a:focus {
+    text-decoration: none;
+    color: #1d9b6c;
+}
+.light {
+    font-weight: 400;
+}
+.light {
+    font-weight: 400;
+}
+.navbar-custom {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
+    font-family: Roboto;
+}
+.navbar-custom .navbar-brand {
+    font-weight: 700;
+}
+.navbar-custom .navbar-brand:focus {
+    outline: 0;
+}
+.navbar-custom .navbar-toggle {
+    padding: 4px 6px;
+    font-size: 16px;
+    color: white;
+}
+.navbar-brand {
+    padding: 3px 2px;
+    font-size: 16px;
+    color: #2e2e2e;
+}
+.navbar-custom .navbar-brand .navbar-toggle:focus, .navbar-custom .navbar-brand .navbar-toggle:active {
+    outline: 0;
+}
+.navbar-custom a {
+    /*color: #0d0d0d;*/
+    color: white;
+}
+.navbar-custom.top-nav-collapse a {
+    color: white;
+}
+.navbar-custom .nav li a {
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+.navbar-custom .nav li a:hover {
+    outline: 0;
+    color: rgba(#afafaf, 0.8);
+    background-color: transparent;
+}
+.navbar-custom.top-nav-collapse .nav li a:hover {
+    outline: 0;
+    background-color: transparent;
+}
+.navbar-custom .nav li a:focus, .navbar-custom .nav li a:active {
+    outline: 0;
+    background-color: transparent;
+}
+.navbar-custom .nav li.active {
+    outline: 0;
+}
+.navbar-custom .nav li.active a {
+    background-color: rgba(255, 255, 255, .3);
+}
+.navbar-custom.top-nav-collapse .nav li.active a:hover {
+    color: #fff;
+}
+.logo-navbar {
+    width: 100px;
+    height: 45px;
+}
+@media (min-width: 100px) and (max-width: 768px) {
+    .navbar-custom .dropdown-menu a, .navbar-custom.top-nav-collapse .dropdown-menu a {
+        color: white;
+        cursor: pointer;
+    }
+    .intro .animatedImg {
+        margin-top: -55px;
+    }
+    .intro {
+        padding: 0px;
+    }
+    .navbar-custom a {
+        color: white;
+    }
+    .navbar-custom.top-nav-collapse a {
+        color: white;
+    }
+    .navbar-toggle {
+        color: white;
+    }
+    .brand-heading-image {
+        width: 200px;
+    }
+    .mapContainer {
+        height: 70vh;
+        overflow: hidden;
+    }
+    .map {
+        height: 70vh;
+    }
+}
+.map {
+    transition: height .5s ease-in-out;
+}
+.photoTick{
+  font-size:24px;
+}
+.photoUntick{
+  display:none;
+  font-size:24px;
+}
+
+@media(min-width:768px) {
+    .navbar-custom .dropdown-menu a, .top-nav-collapse .dropdown-menu a {
+        color: black;
+        cursor: pointer;
+    }
+    .navbar-custom .dropdown-menu a:hover, .top-nav-collapse .dropdown-menu a:hover {
+        color: black;
+        cursor: pointer;
+        background-color: #535353;
+    }
+    .map {
+        height: 100vh;
+    }
+    .navbar-custom {
+        /*padding: 20px 0;*/
+        border-bottom: 0;
+        letter-spacing: 1px;
+        background: rgb(255, 255, 255);
+        -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        transition: background .5s ease-in-out, padding .5s ease-in-out, visibility .01s ease-in-out;
+    }
+    .navbar-custom.top-nav-collapse {
+        padding: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .3);
+        background: #0e3752;
+        /*top nav bar color*/
+    }
+    .brand-heading-image {
+        width: 300px;
+    }
+    .intro .intro-body .brand-heading {
+        font-size: 100px;
+    }
+    .intro .intro-body .intro-text {
+        font-size: 26px;
+    }
+}
+.intro .intro-body {
+    display: table-cell;
+    vertical-align: middle;
+}
+.intro .intro-body .brand-heading {
+    font-size: 40px;
+}
+.intro .intro-body .intro-text {
+    font-size: 18px;
+}
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    margin-top: 15px;
+    padding: 7px 16px;
+    font-size: 40px;
+    color: #fff;
+}
+.btn-circle:hover, .btn-circle:focus {
+    outline: 0;
+    color: #fff;
+    background: rgba(255, 255, 255, .1);
+}
+.btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+}
+.btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@-moz-keyframes pulse {
+    0% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}

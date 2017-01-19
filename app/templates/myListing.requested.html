@@ -1,0 +1,67 @@
+<h1 class="md-display-2" style="padding-top:30px; font-family: Roboto">
+  Requested trips
+</h1>
+<div class='md-padding' layout="row" layout-wrap layout-align="start start" style="min-height:100vh">
+  <div ng-repeat="booking in bookings">
+    <md-card class="md-whiteframe-3dp" style="background-color:##4d9dd0;color:##EEEEEE;">
+      <div layout='column'>
+        <div flex style="background-color:#4a7ab0;" style="max-width:270px;max-height:202px">
+          <img ng-src="{{booking.vehicle.media[0] | mediaAssetcar}}" class="md-card-image" alt="car Photo" style="width:270px;height:202px" />
+        </div>
+        <div flex style=" text-align:left;padding:16px 16px 16px 16px;" layout="column">
+          <div layout="row" layout-align="start end" style="padding:10px 0 10px 0;">
+            <div flex>
+              <h4 style="margin-bottom:10px;text-align:left;padding-left:10px">
+                {{booking.vehicle.model}}
+              </h4>
+              <h5 style="margin-bottom:10px;padding-bottom: 2px;padding-left: 10px;opacity:0.8;">
+                {{booking.vehicle.maker}}
+              </h5>
+            </div>
+            <div flex>
+              <md-button ng-click="viewProfile($index)" style="border:solid 1px; color:#12389C">
+                {{booking.customer.first_name}}
+              </md-button>
+              <div flex layout="row"  layout-align="start center">
+                  <jk-rating-stars id="rateCar" max-rating="5" rating="listing.rating" read-only="true" class='star-rating'>
+                  </jk-rating-stars>
+                  <span class="rating-float-nu" style="color:#616161;">({{0+listing.rating}})</span>
+              </div>
+            </div>
+          </div>
+          <md-divider style="padding-bottom:10px">
+          </md-divider>
+          <span class="md-subhead" style="padding-bottom:10px">
+            Registration:{{booking.vehicle.regNum}}
+          </span>
+          <span class="md-subhead" style="padding-bottom:10px">
+            Booking ID: {{booking.bookingId}}
+          </span>
+          <span class="md-subhead" style="padding-bottom:10px">
+            From: {{booking.pickupTime | date : 'dd-MMM-yyyy , hh:mm a'}}
+          </span>
+          <span class="md-subhead" style="padding-bottom:10px">
+            To : {{booking.dropTime | date : 'dd-MMM-yyyy , hh:mm a'}}
+          </span>
+          <span class="md-subhead" style="padding-bottom:10px">
+            Total Rent:
+            <i class="fa fa-inr" aria-hidden="true"></i>
+            {{booking.totalCost}}
+          </span>
+          <div flex layout="row">
+            <div flex="50" layout-align="start start">
+              <md-button class="green-button" ng-click="bookingApprove($index)">
+                Approve
+              </md-button>
+            </div>
+            <div flex="50" layout-align="end end">
+              <md-button class="red-button" ng-click="initiateReject($index)">
+                Reject
+              </md-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-card>
+  </div>
+</div>

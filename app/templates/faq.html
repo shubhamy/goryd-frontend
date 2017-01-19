@@ -1,0 +1,59 @@
+<div style="padding-top:50px; min-height:100vh" layout="column" layout-align="start none">
+    <div layout="row" layout-align="start start" hide-sm hide-xs>
+        <md-sidenav style="height:100vh;overflow:hidden;padding:0px;" class="md-sidenav-left md-whiteframe-z4" md-component-id="left" md-is-open="isSidenavOpen" md-is-locked-open="$mdMedia('gt-sm')">
+            <md-toolbar class="md-theme-indigo" ng-if="true" style="height:56px;background-color:#4378F8;    padding-left: 40px;">
+                <h1 class="md-toolbar-tools" style="padding-left:0px;padding-top:8px;background-color:#4378F8;">
+                      FAQs</h1>
+            </md-toolbar>
+            <md-list class="md-primary" style="padding-top:0px;">
+                <div ng-repeat="subject in subjects track by $index">
+                    <md-list-item ng-click="showFaqs(subject);setClickedRow($index)" class="item" ng-class={selected:$index==selectedRow}>
+                        <span  class="faq-sidnav-listing" style="">{{subject}}</span>
+                    </md-list-item>
+                </div>
+            </md-list>
+        </md-sidenav>
+        <div flex-gt-sm="60" flex-offset-gt-sm='8' layout="column" layout-align="start start" style='padding:50px;'>
+            <h1 style="text-transform:none;font-family:Roboto;padding-bottom:20px">Frequently Asked Questions</h1>
+            <!-- {{QueAns.keys}} -->
+            <div ng-repeat="(question,answer) in QueAns" style="text-align:justify">
+                <span style="font-family:Roboto; font-size:20px; font-weight:bold; color:#000000">
+                    {{question}}
+                </span>
+                <br/>
+                <span style="font-family:Roboto; font-size:18px; color:#424242">
+                    {{answer}}
+                </span>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+    <div hide-gt-sm>
+        <div flex-gt-sm="60" flex-offset-gt-sm='8' layout="column" layout-align="start start" style='padding:50px;'>
+            <h1 style="text-transform:none;font-family:Roboto;padding-bottom:20px">Frequently Asked Questions</h1>
+            <!-- {{QueAns.keys}} -->
+            <div ng-repeat="subject in subjects track by $index">
+                <div style="font-family:Roboto; font-size:24px; font-weight:bold;padding:10px">
+                    <span style="text-transform:capitalize;margin:auto;font-family:Roboto;
+              font-size:23px;">{{subject}}</span>
+                    <br/>
+                    <br/>
+                </div>
+                <div ng-repeat="(question,answer) in faqs[subject]" style="text-align:justify">
+                    <span style="font-family:Roboto; font-size:20px; font-weight:bold;">
+                        {{question}}
+                    </span>
+                    <br/>
+                    <span style="font-family:Roboto; font-size:18px">
+                        {{answer}}
+                    </span>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

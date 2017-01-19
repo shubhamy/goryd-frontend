@@ -1,0 +1,86 @@
+<div layout="row" style="padding-top:100px;">
+    <div layout="column" flex-offset="10" flex="80" flex-offset-sm="5" flex-offset-xs="0" flex-sm="90" flex-xs="100">
+        <div layout="row" layout-align-xs="center center">
+            <h2 style="text-align:left; text-transform:none">Rent Request Details</h2>
+        </div>
+        <div layout="row" layout-sm ="column" layout-xs="column">
+            <div flex>
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-media>
+                            <div class="md-media-lg md-media-sm md-media-xs">
+                                <img style="display:block; border:0; max-width:auto; max-height:auto;" src={{owner_details.profile_pic_url}}></img>
+                            </div>
+                        </md-card-title-media>
+                        <md-card-title-text style="padding-left:50px; text-align:left">
+                            <span class="md-headline">{{owner_details.name}}</span>
+                            <span class="md-subhead" style="padding-bottom:10px">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                            <span>Age:
+                                {{owner_details.age}}
+                                years</span>
+                            <span>Ph: +91-{{owner_details.mobile}}</span>
+                            <span>City:
+                                {{owner_details.city}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+            <div flex>
+                <md-card>
+                    <md-card-title>
+                        <div layout="row" layout-xs="row" layout-align-xs="none center">
+                            <div flex>
+                                <md-card-title-media>
+                                    <div class="md-media-lg md-media-sm md-media-xs">
+                                        <img style="display:block; border:0; max-width:auto; max-height:auto;" src={{car_rent_details.car_pic}}></img>
+                                    </div>
+                                </md-card-title-media>
+                            </div>
+                            <div flex>
+                                <md-card-title-text style="padding-left:50px; text-align:left">
+                                    <span class="md-headline">{{car_rent_details.maker}}</span>
+                                    <span class="md-subhead" style="padding-bottom:10px">{{car_rent_details.model}}</span>
+                                </md-card-title-text>
+                            </div>
+                            <div flex layout-xs="column">
+                                <md-button class="green-button">Approve</md-button>
+                                <md-button class="red-button">Reject</md-button>
+                            </div>
+                        </div>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
+        <div layout="row">
+             <div flex="100">
+                 <md-card>
+                     <md-card-title>
+                        <md-card-title-text style="padding-left:50px; text-align:left">
+                            <span>Pickup time:
+                                {{car_rent_details.pickup_time}}</span>
+                            <span>Trip ends at:
+                                {{car_rent_details.drop_time}}</span>
+                            <span>Total rent hours:
+                                {{car_rent_details.rent_hours}}
+                                hours</span>
+                            <span>Deposit: Rs.
+                                {{car_rent_details.deposit}}
+                                (Refundable)</span>
+                            <span>Rent: Rs.
+                                {{car_rent_details.total_rent}}</span>
+                            <span>Payment mode:
+                                {{car_rent_details.payment_mode}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </div>
+    </div>
+    <div flex></div>
+</div>

@@ -1,0 +1,63 @@
+<div layout="column" ng-controller="home.subscribe">
+    <div layout="row" layout-align="center none" ng-hide="thanks">
+        <h2 style="color:black;text-transform:none">Want to know more? Subscribe!</h2>
+    </div>
+    <div ng-hide="thanks" layout="row" layout-align="center none" layout-sm="column" layout-xs="column">
+        <div flex-gt-sm="25">
+            <form name="nameForm">
+                <md-input-container class="md-block md-icon-float">
+                    <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                    <input required name="name" ng-model="name" placeholder="Name" type="text"></input>
+                    <div ng-messages="nameForm.name.$error">
+                        <div ng-message="required">Please provide your name.</div>
+                    </div>
+                </md-input-container>
+            </form>
+        </div>
+        <div flex-gt-sm="5"></div>
+        <div flex-gt-sm="25">
+            <form name="phoneForm">
+                <md-input-container class="md-block md-icon-float">
+                    <md-icon md-svg-src="img/icons/ic_phone_24px.svg" class="phone"></md-icon>
+                    <input required name="phone" ng-model="phone" placeholder="Phone Number" type="text" ng-pattern="/^\d{10}$/"></input>
+                    <div ng-messages="phoneForm.phone.$error">
+                        <div ng-message-exp="['required', 'pattern']">Please provide a valid phone number.</div>
+                    </div>
+                </md-input-container>
+            </form>
+        </div>
+        <div flex-gt-sm="5"></div>
+        <div flex-gt-sm="25">
+            <form name="emailForm">
+                <md-input-container class="md-block md-icon-float">
+                    <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+                    <input required name="email" ng-model="email" placeholder="Email (required)" type="email" ng-pattern="/^.+@.+\..+$/"></input>
+                </md-input-container>
+            </form>
+        </div>
+    </div>
+    <div layout="row" layout-align="center none" ng-hide="thanks">
+        <md-input-container>
+            <md-content>
+                <md-select ng-model="isRenter" aria-label="isRenter">
+                    <md-option ng-repeat="user in userOptions" value="{{user}}">
+                        {{user}}
+                    </md-option>
+                </md-select>
+            </md-content>
+        </md-input-container>
+    </div>
+    <div layout="row" layout-align="center none" ng-hide="thanks">
+        <md-button class="md-raised md-primary" ng-disabled="emailForm.$invalid" ng-click="subscribeUser();" style="text-transform:none; color: #37474F">
+            Subscribe
+        </md-button>
+    </div>
+    <div ng-show="thanks" layout="row" layout-sm="column" layout-xs="column">
+        <div flex align="center">
+            <h3 style="color:black;text-transform:none">
+                {{successMessage}}
+                {{errorMessage}}
+            </h3>
+        </div>
+    </div>
+</div>

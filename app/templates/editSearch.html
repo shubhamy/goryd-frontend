@@ -1,0 +1,172 @@
+<style>
+    .md-datepicker-input[placeholder] {
+        color: #eeeeee;
+    }
+    /*md-select.md-default-theme .md-select-value, md-select .md-select-value {
+        border-bottom-color: #eeeeee;
+ }
+ md-input-container.md-default-theme .md-input, md-input-container .md-input {
+   border-color: #eeeeee;
+ }*/
+
+    .md-datepicker-input-mask {
+        height: 0px;
+    }
+
+    md-icon.md-default-theme,
+    md-icon {
+        color: #eeeeee;
+    }
+
+    .md-datepicker-input[placeholder] {
+        color: #ffffff;
+    }
+
+    md-select.md-default-theme .md-select-value,
+    md-select .md-select-value {
+        border-bottom-color: #eeeeee;
+        /*border-left-color: 2px solid #eeeeee;*/
+    }
+
+    md-input-container.md-default-theme .md-input,
+    md-input-container .md-input {
+        border-color: #eeeeee;
+    }
+
+    md-input-container {
+        padding: 0px;
+    }
+
+    md-input-container .md-input {
+        color: #424242;
+        padding-left: 10px;
+        height: 40px;
+        background-color: #FFFFFF;
+    }
+    /*md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+
+  outline: none;
+  border-color: #9ecaed;
+  border-width: 1px;
+}*/
+    /*md-input-container.md-default-theme label,
+md-input-container.md-default-theme .md-placeholder {
+    color: #FDFE67 !important;
+}*/
+    /*md-datepicker style*/
+
+    .md-datepicker-input-container {
+        border: 1px solid #e0e0e0;
+        background-color: #ffffff;
+        font-size: 16px;
+        padding-bottom: 0px;
+        height: 38px;
+    }
+
+    md-datepicker .md-input-focused {
+        outline: none;
+        border-color: #9ecaed;
+        box-shadow: 0 0 12px #4a75e0;
+    }
+
+    .md-datepicker-input[placeholder] {
+        color: #424242;
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+    .md-default-theme .md-datepicker-open .md-datepicker-calendar-icon,
+    .md-datepicker-open .md-datepicker-calendar-icon {
+        fill: #133999;
+    }
+
+    .md-datepicker-open {}
+
+    .md-datepicker-input-mask {
+        height: 0px;
+    }
+    .md-select-value .md-select-icon{
+      display: none;
+    }
+    .md-default-theme .md-datepicker-calendar,
+    .md-datepicker-calendar,
+    .md-default-theme .md-datepicker-input-mask-opaque,
+    .md-datepicker-input-mask-opaque {
+        background-color: #FFFFFF;
+    }
+    /*md-time-select style*/
+    .md-select-menu-container.md-active{
+      z-index:160;
+    }
+    .md-datepicker-button{
+      display:none;
+    }
+    md-select.md-default-theme .md-select-value,
+    md-select .md-select-value {
+        /*border: 1px solid #ffffff;*/
+        background-color: #eeeeee;
+        color: #626262;
+        font-size: 16px;
+        padding-left: 10px;
+        padding-top: 0px;
+        /* padding-top: 6px; */
+        height: 36px;
+    }
+    .wholediv{
+      font-family:Roboto,sans-serif;
+      overflow:hidden;
+    }
+    .md-datepicker{
+    }
+    @media (min-width: 100px) and (max-width: 768px){
+      .wholediv{
+        width: 100%;
+      }
+    }
+</style>
+<div ng-controller="home"style=""class="wholediv">
+    <div class="" layout="row" layout-align="center center" style="color:#3f51b5;height:75px;position:relative;top:-4px;">
+        <div layout="row" flex="40" style="">
+            <md-input-container style="width:100%;margin-left:0.6em;margin-right:0.1em">
+                <div style="width:100%;display:inline-block;position:relative;
+            top:-10px;">
+                    <input id="search" class="" style="width:100%;border:1px solid #3f51b5" aria-label="Search Cars" places-auto-complete component-restrictions="{country:'in'}" type="text" ng-model="searchPlace" on-place-changed="placeChanged()" />
+                </div>
+            </md-input-container>
+        </div>
+        <div flex layout="column" style="max-height:40px; margin-bottom:20px;">
+            <div layout="row">
+                    <md-datepicker flex="20" style="color:#eeeeee;background-color:#ffffff;margin-right:0.1em" md-on-close='' auto-open ng-model="d1" md-min-date="minDate" md-placeholder="Enter date" ng-init="openTime=false">
+                    </md-datepicker>
+                    <span class="displayDateSmall"> {{d1  | date:'dd-MMM-yyyy'}}</span>
+
+                    <md-input-container flex="15" style="margin:0 0 0 0;margin-right:0.1em">
+                    <md-select id='timeStart' md-on-close='' ng-model="t1" aria-label="select time" focus-me="openTime" style="">
+                        <md-option ng-repeat="t in time1" value="{{t}}">
+                            {{t}}
+                        </md-option>
+                    </md-select>
+                    </md-input-container>
+
+                    <md-datepicker flex="20" id='dateEnd' auto-open ng-model="d2" md-min-date="sDate" md-placeholder="Enter date" style="background-color:transparent;margin-right:0.1em">
+                    </md-datepicker>
+                    <span class="displayDateSmall">
+                {{d2 | date:'dd-MMM-yyyy'}}
+              </span>
+
+                <md-input-container flex="15" style="margin:0 0 0 0;margin-right:0.6em">
+                    <md-select id='timeEnd' ng-model="t2" aria-label="select time">
+                        <md-option ng-repeat="t in time2" value="{{t}}">
+                            {{t}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <div class="" flex ng-click="updateSearchParams()" style="color:#ffffff; text-transform: none; width:100%;position:relative;background-color:#394fc7;margin-right:0.8em;height:2.6em;border-radius:3px ">
+                    <p style="font-size:20px;padding:5px 40px 5px 40px;margin: 0 0 0 0;">
+                        Update
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

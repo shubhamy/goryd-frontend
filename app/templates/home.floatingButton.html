@@ -1,0 +1,55 @@
+<div class="lock-size" layout="row" layout-align="center center" ng-controller="floatingButton" ng-cloak >
+  <md-button aria-label="Comment" class="md-fab md-raised md-mini md-social-btn md-fab-bottom-right" ng-click="openRightMenu()" style="background-color:#666A71" style="position: fixed;z-index:1000;">
+    <i class="fa fa-comment-o fa-social-icon" aria-hidden="true" style="color:white;font-size:22px;padding-top:9px;"></i>
+    <md-tooltip md-direction="left">
+      Get in touch
+    </md-tooltip>
+  </md-button>
+
+  <md-sidenav id='floatButton' class="md-sidenav-right md-whiteframe-z2 floatForm" md-component-id="right">
+    <md-toolbar class="md-medium md-primary">
+      <h1 class="md-toolbar-tools">
+        Get in touch
+      </h1>
+    </md-toolbar>
+    <div layout-padding>
+      <md-input-container class="md-block" ng-hide="thanks" flex-gt-sm>
+        <label>
+          Name
+        </label>
+        <input ng-model="name1">
+        </input>
+      </md-input-container>
+      <md-input-container ng-hide="thanks" class="md-block" flex-gt-sm>
+        <label>
+          Your Query
+        </label>
+        <textarea rows="8" cols="40" style="max-height:100px;height:100px;overflow:auto;" ng-model="feedback">
+        </textarea>
+      </md-input-container>
+      <md-input-container ng-hide="thanks" flex-gt-sm style='text-align:center;width:100%;'>
+        <div layout="row" layout-align="center center">
+          <jk-rating-stars id="rate" max-rating="5" rating="rating" read-only="false" on-rating="onRating(rating)" class='starsMy'>
+          </jk-rating-stars>
+        </div>
+        <div style='text-transform:none;'>
+          <p>
+            {{reviewResponse}}
+          </p>
+        </div>
+      </md-input-container>
+      <br/>
+      <br/>
+      <div flex style="width:100%;text-align:center;">
+        <md-button ng-hide="thanks" ng-click="submit()" style="background-color:#666A71;color:#ffffff">
+          Submit
+        </md-button>
+      </div>
+    </div>
+    <div layout="row" layout-align="center center" style="padding:10px;" ng-show="thanks">
+      <p>
+        Thanks for reaching out to us. We will revert back to you shortly.
+      </p>
+    </div>
+  </md-sidenav>
+</div>

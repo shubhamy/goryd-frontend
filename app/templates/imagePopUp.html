@@ -1,0 +1,18 @@
+<md-card class="listingPage-carImg" style="background-color:#333;width:1000px;height:500px;overflow:hidden; " layout="row" layout-align="center center">
+    <div layout="column" flex="10" class="map-card-arrow-sm" style="color:white;font-size;30px;" layout-align="center center">
+        <i class="fa fa-chevron-left" ng-click="prevPhoto()" aria-hidden="true" ng-hide="$index==0"></i>
+    </div>
+    <div layout="column" flex="80" class="" layout-align="center center">
+        <md-card class="listingPage-carImg" style="margin:5px" ng-click="imageDialogues();">
+            <img style="display:block; border:0; max-width:800px;max-height500px; " ng-src="{{a.media[indexPhoto].attachment | mediaAssetcar}}"></img>
+        </md-card>
+        <!-- {{a}}
+            1
+            <br>
+            <img style="display:block; border:0; width:100px; height:100px;" ng-src="{{reviewList.media[w*3 + i].attachment | mediaAssetcar}}"></img> -->
+
+    </div>
+    <div layout="column" flex="10" class="map-card-arrow-sm" style="color:white;font-size;30px;" layout-align="center center">
+        <i class="fa fa-chevron-right" ng-click="nextPhoto()" aria-hidden="true" ng-hide="$index==(length-1)"></i>
+    </div>
+</md-card>

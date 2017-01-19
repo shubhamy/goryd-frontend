@@ -1,0 +1,100 @@
+<h1 class="md-display-2" style="font-family:Roboto">Requested Bookings</h1>
+<div  layout="row" layout-wrap layout-align="start start" style="min-height:100vh">
+  <div style="float:right;width:100%;padding-right:12px;" layout="row" layout-align="end end" hide-xs hide-sm>
+    <label class="toogle-grid-list-switch" >
+      <input type="checkbox">
+      <div class="list-grid-slider" ng-click="toggleListGridView();"></div>
+    </label>
+  </div>
+  <md-card style="width:100%;" layout="column" ng-show="isgridViewActive" hide-xs hide-sm>
+      <div layout="row" style="padding:16px;background-color:#516190;" class="listviewdivhead"  layout-align="center center">
+        <div flex="30" flex layout="row" layout-align="start center">
+          <img style="width:35px;height:35px;border-radius:50%;" src="http://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/256/Car-icon.png" />
+          <p style="font-size:18px;font-weight:700px;color:white;opacity:0.87;margin-bottom:0px;margin-left:16px;float:left;text-transform:uppercase;">Car</p>
+        </div>
+        <div flex="20">
+          <p >Booking ID</p>
+        </div>
+        <div flex="15">
+          <p >From</p>
+        </div>
+        <div flex="15">
+          <p >To</p>
+        </div>
+        <div flex="10">
+          <p >Cost</p>
+        </div>
+        <div flex="10">
+          <p >Cancel?  </p>
+        </div>
+      </div>
+    <md-divider></md-divider>
+    <div  ng-repeat="booking in bookings" >
+      <div layout="column" style="padding:16px;"  layout-align="center center">
+        <div layout="row"  style="width:100%;" class="listviewdivcontent" layout-align="center center">
+          <div flex="30" layout="row" layout-align="start center">
+            <img style="width:35px;height:35px;border-radius:50%;background-color:blue;" ng-src="{{booking.vehicle.media[0] | mediaAssetcar}}" />
+            <p style="font-size:16px;color:black;opacity:0.87;margin-bottom:0px;margin-left:16px;float:left;text-transform:uppercase;">{{booking.vehicle.model}} </p>
+          </div>
+          <div flex="20">
+            <p >{{booking.bookingId}}</p>
+          </div>
+          <div flex="15">
+            <p >{{booking.pickupTime | date : 'dd-MMM-yyyy , hh:mm a'}}</p>
+          </div>
+          <div flex="15">
+            <p >{{booking.dropTime | date : 'dd-MMM-yyyy , hh:mm a'}}</p>
+          </div>
+          <div flex="10">
+            <p >&#8377;{{booking.totalCost}}</p>
+          </div>
+          <div flex="10">
+            <md-button class="md-icon-button" aria-label="More">
+              <i class="fa fa-times" style="font-size:18px;color:#d32f2f;" aria-hidden="true"></i>
+            </md-button>
+          </div>
+        </div>
+      </div>
+      <md-divider></md-divider>
+    </div>
+  </md-card>
+  <div ng-repeat="booking in bookings" >
+    <md-card class="md-whiteframe-3dp" style="float:left;width:270px;max-height:500px;" ng-show="!isgridViewActive">
+        <div layout='column' >
+          <div flex style="background-color:#4a7ab0;" style="width:270px;height:100px">
+            <img ng-src="{{booking.vehicle.media[0] | mediaAssetcar}}" class="md-card-image" alt="car Photo" style="width:270px;height:150px">
+          </div>
+          <div layout="column" layout-align="start start" style="padding:16px 16px 8px 16px;">
+            <h4 style="font-size:20px;color:black;opacity:0.87;float:left;">{{booking.vehicle.model}} </h4>
+            <div layout="row" style="width:100%;">
+              <h5 style="font-size:16px;color:black;opacity:0.57;float:left;">{{booking.vehicle.maker}}</h5>
+              <div flex layout="row"  layout-align="end center">
+                <jk-rating-stars id="rateCar" max-rating="5" rating="listing.rating" read-only="true" class='star-rating'>
+                </jk-rating-stars>
+                <span class="rating-float-nu" style="color:#616161;">({{0+listing.rating}})</span>
+              </div>
+            </div>
+          </div>
+          <md-divider></md-divider>
+          <div  layout="row"style="padding:16px 16px 16px 16px;">
+            <div  layout="column" flex="50" layout-align="center start" class="cardviewleft">
+              <p style="">Booking ID</p>
+              <p style="">From</p>
+              <p style="">To</p>
+              <p style="font-size:14px;color:black;opacity:0.57;margin-bottom:0;">Cost</p>
+            </div>
+            <div layout="column" flex="50" layout-align="center end" class="cardviewright">
+              <p style="">{{booking.bookingId}}</p>
+              <p style="">{{booking.pickupTime | date : 'dd-MMM-yyyy , hh:mm a'}}</p>
+              <p style="">{{booking.dropTime | date : 'dd-MMM-yyyy , hh:mm a'}}</p>
+              <p style="font-size:14px;color:black;opacity:0.87;margin-bottom:0;">&#8377;{{booking.totalCost}}</p>
+            </div>
+          </div>
+          <md-divider></md-divider>
+          <div style="margin:0;padding:16px;width:100%" md-raised md-button layout="row" layout-align=" center center" ng-click="bookingCancel($index)" ng-disabled="form.$pristine|| form.$invalid">
+            <p style="font-size:16px;color:#e53935;opacity:0.87;margin:auto;">Cancel</p>
+          </div>
+        </div>
+    </md-card>
+  </div>
+</div>

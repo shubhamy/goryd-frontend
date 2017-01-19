@@ -1,0 +1,73 @@
+<div style="min-height:100vh">
+    <h1 class="md-display-2" style="padding-top:30px; font-family: Roboto">My cars</h1>
+    <div class='md-padding' layout="row" layout-wrap layout-align="start start">
+        <div ng-repeat="listing in listings">
+            <md-card class="md-whiteframe-3dp" style="float:left">
+                <div layout='column'>
+                    <div flex style="background-color:#4a7ab0;" style="width:270px;height:202px">
+                        <img ng-src="{{listing.media[0][0].attachment | mediaAssetcar}}" class="md-card-image" alt="car Photo" style="width:270px;height:202px">
+                    </div>
+                    <div flex style=" text-align:left;padding:16px 16px 16px 16px;" layout="column">
+                        <div layout="column" layout-align="start start" style="padding:10px 0 10px 0;">
+                            <div layout="row" style="width:100%;">
+                              <div flex="40">
+                                <h5 style="margin-bottom:0px;padding-top:3px;padding-left: 10px;opacity:0.8;">{{listing.maker}} </h5>
+                              </div>
+                              <div flex="60">
+                                <p  ng-hide= 'listing.verified' style='color:rgb(192, 76, 38);text-transform:uppercase;font-weight:600;text-align:center;font-size:14px;'>
+                                  Unverified car
+                                </p>
+                                <p ng-show= 'listing.verified' style='color:rgb(46, 140, 5);text-transform:uppercase;font-weight:600;text-align:center;font-size:14px;'>
+                                  Verified car
+                                </p>
+                              </div>
+                            </div>
+                            <div layout="row" flex style="text-align:left;padding-bottom:4px;padding-left: 10px;">
+                              <h4 style="margin-bottom:0px">{{listing.model}} </h4>
+                                <div ng-hide= 'listing.active' style='border-radius: 50%;background-color:rgb(192, 76, 38);width:10px;height:10px;margin:5px auto auto 15px;'>
+                                </div>
+                                <div ng-show= 'listing.active' style='border-radius: 50%;background-color:rgb(46, 140, 5);width:10px;height:10px;margin:5px auto auto 15px;'>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex layout="row"  layout-align="start center">
+                            <jk-rating-stars id="rateCar" max-rating="5" rating="listing.rating" read-only="true" class='star-rating'>
+                            </jk-rating-stars>
+                            <span class="rating-float-nu" style="color:#616161;">({{0+listing.rating}})</span>
+                        </div>
+                        <md-divider style="padding-bottom:10px"></md-divider>
+                        <span class="md-subhead" style="padding-bottom:10px">Registration: {{listing.regNum}}</span>
+                        <!-- <span class="md-subhead" style="padding-bottom:10px">Prices</span> -->
+                        <span class="md-subhead" style="padding-bottom:10px">Weekday Price:   <i class="fa fa-inr" aria-hidden="true"></i> {{listing.weekdayPrice}}</span>
+                        <span class="md-subhead" style="padding-bottom:10px">Weekend Price:   <i class="fa fa-inr" aria-hidden="true"></i> {{listing.weekendPrice}}</span>
+                        <span class="md-subhead" style="padding-bottom:10px">Deposit:   <i class="fa fa-inr" aria-hidden="true"></i> {{listing.deposit}}</span>
+                        <span class="md-subhead" style="padding-bottom:10px">Total Earnings: <i class="fa fa-inr" aria-hidden="true"></i> {{listing.totalEarning}}</span>
+                        <span class="md-subhead" style="padding-bottom:10px">Total Bookings: {{listing.totalBookings}}</span>
+                        <div flex layout="row">
+                          <div flex="50" layout-align="start start">
+                            <md-button class="red-button" style="padding: 0 2px 0 2px;min-width:120px" ng-show='listing.active' ng-click="initiateInactive($index)"> Set Inactive</md-button>
+                            <md-button class ='green-button' ng-hide= 'listing.active' ng-click="setActive($index)"> Set
+                            Active</md-button>
+                          </div>
+                          <div flex="50" layout-align="end end" style="text-align:right;">
+                            <md-button class="default-button" ng-click="edit($index)">Edit</md-button>
+                          </div>
+                        </div>
+                        <!-- <div flex layout="row" layout-align="start center">
+                        </div> -->
+                    </div>
+                </div>
+            </md-card>
+        </div>
+        <md-card class="md-whiteframe-3dp" style="float:left;min-height:580px;width:270px;">
+            <div layout='column'>
+                <md-button style="height:580px;width:100%;margin:0;padding:0;" ng-click="$state.go('share')">
+                  <h3 style="text-transform:uppercase;color:#9E9E9E;font-size:24px;font-weight:700;">Add a new Car</h3>
+                  <div>
+                    <i class="fa fa-plus" style="font-size:120px;color:#9E9E9E;padding:20px;margin:20px;" aria-hidden="true"></i>
+                  </div>
+                </md-button>
+            </div>
+        </md-card>
+    </div>
+</div>

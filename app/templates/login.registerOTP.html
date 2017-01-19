@@ -1,0 +1,36 @@
+<md-dialog aria-label="Registration OTP" ng-cloak ng-controller='main'>
+  <form name="registrationOTPForm" enter-press="validateOTP(OTP);">
+    <md-toolbar style='background-color:#4378F8'>
+      <div class="md-toolbar-tools">
+        <h2>Registration OTP</h2>
+        <span flex></span>
+        <!-- <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button> -->
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="margin-top:30px;padding-left:50px;padding-right:50px;">
+      <p>
+        Enter the OTP sent to your phone
+      </p>
+    </md-dialog-content>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-input-container class="md-block">
+            <md-icon md-svg-src="images/dialpad.svg"></md-icon>
+            <label>OTP</label>
+            <input ng-model="OTP" name="OTP"required ng-pattern="/^[0-9]{1,6}$/" type="text">
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button href="" ng-click = 'resendOTP();' target="">
+        Resend OTP
+      </md-button>
+      <!-- <span flex></span> -->
+      <md-button href="" ng-click = 'validateOTP(OTP);' ng-disabled="registrationOTPForm.$invalid" target="">
+       Submit
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

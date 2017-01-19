@@ -1,0 +1,44 @@
+<div class="contactUsback" >
+  <div class="md-whiteframe-2dp contactusDiv" flex-gt-sm="80" layout="row" style="min-height:400px;margin:auto;padding:20px 0 20px 0;background-color:#ffffff; font-family: 'Roboto', sans-serif;">
+      <div layout="column" flex layout-align="center center" style="padding:40px 20px 20px 60px;color:#626262;margin:auto"  >
+        <h4 style="margin:0;font-size:18px;font-weight:600;text-transform:uppercase;">Reach out to us</h4>
+        <form name="contactForm" style="margin-top:30px;width:100%" novalidate>
+          <div style="max-height:65px">
+            <i class="fa fa-user" style="font-size:18px;color:#9E9E9E;" aria-hidden="true"></i>
+            <md-input-container style="padding-left:20px;width:85%;margin:0;">
+              <label style="position:relative;">Name</label>
+              <input class="user-name-input" name="userFullName" ng-model="contactForm.userName"  style="padding-left:0;"  required>
+              <div ng-messages="contactForm.userFullName.$error" style="float:right;">
+                <div ng-message="required">This field is required</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div style="max-height:65px">
+            <i class="fa fa-envelope"  style="font-size:18px;color:#9E9E9E;" aria-hidden="true"></i>
+            <md-input-container style="padding-left:20px;width:85%;margin:0;">
+              <label  style="position:relative;">Email</label>
+              <input type='email' ng-model="contactForm.userMail" ng-name="userMailAdd"  style="padding-left:0;" required ng-pattern="/^.+@.+\..+$/">
+              <div ng-messages="contactForm.userMailAdd.$error" style="float:right;">
+                <div ng-message="required">This field is required</div>
+                <div ng-message="email">Your email address is invalid</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div style="max-height:65px">
+            <i class="fa fa-comment"  style="font-size:18px;color:#9E9E9E;" aria-hidden="true"></i>
+            <md-input-container style="padding-left:20px;width:85%;margin:0;">
+              <label style="position:relative;">Your Message</label>
+              <textarea ng-model="contactForm.userMessage" name="userMess" rows= '3' style="padding-left:0;height:60px;max-height:60px;overflow:auto; " required></textarea>
+              <div ng-messages="contactForm.userMess.$error" style="float:right;">
+                <div ng-message="required">This field is required</div>
+                <!-- <div ng-message="minlength">Message must be over 20 characters</div> -->
+              </div>
+            </md-input-container>
+          </div>
+          <div layout="row" layout-align="center center" style="margin-right:10%;font-weight:600;margin-top:40px;">
+          <md-button style="font-weight:600;" class='contactus-button' ng-click="contactSubmit(contactForm);" ng-disabled="contactForm.$invalid">Send</md-button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>

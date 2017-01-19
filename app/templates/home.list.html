@@ -1,0 +1,99 @@
+<div  ng-show="loadingIcon" layout="column" layout-align="center center" style="height:100vh;width:100%;background:white;z-index:100000;position:fixed;color:#4378F8;opacity:0.8" class="text-center">
+  <div class="loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+</div>
+<div ng-hide="loadingIcon" class="editFields" ng-include="'templates/editSearch.html'" style="z-index:160;height:47px">
+</div>
+<div  ng-show="loadingIconBooking" style="position:fixed;background-color:black;opacity:0.3;top:0;left:0;width:100%;height:100%;z-index:200;">
+</div>
+<div  ng-show="loadingIconBooking"   class=" loading-spinner text-center" style="position:fixed;height:100vh;left:0px;z-index:100000;overflow:hidden;background:transparent;">
+  <div class="loader" layout="row" style="height:100%;overflow:hidden;" layout-align="center center">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"stroke-miterlimit="10"/>
+    </svg>
+    <p style="font-size:15px;color:#0433BC">Loading</p>
+  </div>
+</div>
+<div layout="row" flex class="anim-in-out anim-fade searchsize" data-anim-speed="600" style="max-height:99vh">
+    <md-content flex>
+        <div layout="column" >
+            <div flex style="position:absolute;top:0px;right:0px;width:100%;z-index=100;">
+
+            </div>
+            <div flex class="mapContainer" ng-click="toggleLoginForm(false);" style="max-height:91vh !important">
+                <ng-map center="{{mapPos}}"    on-zoom_changed="collapseMarker()"  class="map" zoom="{{zoomInitial}}" style="max-height:91vh !important">
+                    <custom-marker id="foo"  ng-repeat="m in mapMarkers track by $index" position="{{m}}">
+                        <div class="" layout="column" layout-align="center center"  >
+                            <md-card class=" marker-{{expClass[$index]}}"layout="column" class="container-fluid" layout-align="center center"  >
+                                  <div ng-hide="expClass[$index]=='expandMapMarker'" ng-click="expMarker(mapMarkers,$index)" >
+                                      <p style="padding-top:5px;">&#8377; {{listings[$index].totalCost}} <p>
+                                  </div>
+                                  <div ng-show="expClass[$index]=='expandMapMarker'" ng-click="collapseMarker(mapMarkers)">
+                                      <img ng-src='{{mediaCar[$index]}}'  alt="car Photo" width="100%" style="width:100%;height:100px;marigin:0;">
+                                      <p style="font-size:14px;margin:0 auto;">Model: {{listings[$index].model}}</p>
+                                      <p  style="font-size:14px;margin:0 auto;">Rent: &#8377; {{listings[$index].totalCost}}</p>
+                                      <div layout="row" layout-align="end center" style="font-weight:600;">
+                                          <md-button ng-click="sendBookingRequest($index)" style="width:100%;font-weight:600;font-size:13px;">Book now</md-button>
+                                      </div>
+                                  </div>
+                              </md-card>
+                              <div class="up-triangle  triangle-{{expClass[$index]}} " style="color:#ffffff" > </div>
+                        </div>
+                    </custom-marker>
+                    <shape ng-repeat="m in mapMarkers track by $index"
+                           center="{{m}}"
+                           name="circle"
+                           radius="1000"
+                           stroke-color="#303F9F"
+                           stroke-opacity="0.6"
+                           stroke-weight="1"
+                           fill-color="#303F9F"
+                           fill-opacity="0.4"/>
+                </ng-map>
+            </div>
+            <md-toolbar class="md-default visible-sm visible-xs" style="height:27vh;padding:0px;z-index:1010">
+                <md-content class="md-padding" style="height:100%;overflow:hidden;">
+                  <div class="infoCard" layout="row" ng-repeat="listing in listings" ng-mouseenter="highlightListingMarker(item)" style="background:white;position:fixed;width: 100%;left:{{getCardPos($index)}}px" md-swipe-right="onSwipeRight()" md-swipe-left="onSwipeLeft()">
+                      <md-card flex="5" class="md-whiteframe-12dp" style="margin: 8px 8px 8px 0;opacity:0.2;background-color:#757575" ng-hide="$index==0" ng-click="onSwipeRight()">
+                      </md-card>
+                      <md-card  flex="90" class="md-whiteframe-3dp" layout="row" style="min-height:24vh">
+                          <div ng-click="showTabDialog($event,$index);"  style="margin:aut0" flex layout="column"  >
+                            <div layout="row" style="max-height:120px; padding:16px 10px 10px 10px">
+                              <div layout="column" flex='30' layout-align="center center" >
+                                  <img ng-src="{{listing.media[0].attachment | mediaAssetcar}}" class="md-avatar" alt="car Photo" style="width:133px;height:100px;margin-right:15%;max-height:55px;max-width:55px;border:1px solid grey;border-radius:55px;" layout="row">
+                              </div>
+                              <div flex layout="column" style="width: 100%">
+                                    <h3 style="margin: 0 0 0 0;text-align:left;">{{listing.maker}}</h3>
+                                    <h4 style="margin:0 0 0 0;text-align:left;color:#757575">{{listing.model}}</h4>
+                                <div style="position:relative;top:10px;font-size:14px;">
+                                  <jk-rating-stars id="rateCar" max-rating="5"   rating="listing.rating" read-only="true" class='star-rating'></jk-rating-stars>
+                                </div>
+                                <div>
+                                  <h5 class="zero-margin" style="text-align: right;color:#757575">{{listing.gearType}}</h5>
+                                </div>
+                              </div>
+                              </div>
+                              <md-divider></md-divider>
+                              <div layout="row" layout-align="start  start" style="max-height:100px; padding:8px">
+
+                                  <div flex>
+                                    <span class="md-subhead" style="padding-bottom:10px">Total Price: <i class="fa fa-inr" aria-hidden="true"></i> &#8377;  {{listing.totalCost}}</span>
+                                  </div>
+                                  <div flex>
+                                    <span class="md-subhead" style="padding-bottom:10px">Deposit: <i class="fa fa-inr" aria-hidden="true"></i> {{listing.deposit}}</span>
+                                  </div>
+                              </div>
+                        </div>
+                      </md-card>
+                      <md-card flex="5" class="md-whiteframe-12dp" style="margin: 8px -2px 8px 8px;opacity:0.2;background-color:#757575;" ng-click="onSwipeLeft()" ng-hide="$index==(listings.length-1)">
+                      </md-card>
+                    </div>
+                </md-content>
+            </md-toolbar>
+        </div>
+    </md-content>
+    <div ng-include="'templates/home.list.rightAside.html'" ng-click="toggleLoginForm(false)"></div>
+</div>

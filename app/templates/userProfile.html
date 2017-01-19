@@ -1,0 +1,115 @@
+<div ng-cloak style="margin-top:60px;margin-bottom:70px" layout="column" layout-align="start none" ng-controller="userProfile">
+  <div layout-gt-sm="row" flex-order="1" layout-align="start start">
+    <div style="overflow:hidden;padding:0px;min-width:270px;padding-left:45px;">
+      <md-card ng-cloak style=" margin-top:5.8em;">
+        <div class="userProfile" style="min-height:150px;width:100%;position:relative;">
+          <md-toolbar style="height:60px;background-color:#375CB6">
+            <div layout="row" style="padding-top:10px;">
+              <div flex="40">
+                <img class="" style="width:45px;height:45px;border-radius:100%;margin-left:16px;" ng-src="{{userProfileImage| mediaAsset}}" width="200px" height="200px"/>
+              </div>
+              <div layout="column" flex="60" layout-align="center start">
+                <h2 style="margin:0px 0px 0px 0px;">Profile</h2>
+              </div>
+            </div>
+          </md-toolbar>
+          <md-content style="padding:16px;background-color:#ffffff">
+            <div layout="column" layout-align="start start">
+              <h4 style="margin:0px 0px 0px 0px;text-align:left;text-transform:capitalize">{{username}}</h4>
+              <p style="margin:0 0 0 0;" ng-init="rates=reviewerrating()">
+                <jk-rating-stars id="rate4" max-rating="5" rating="myRate" read-only="true" class='star-rating'></jk-rating-stars>
+              </p>
+            </div>
+            <div flex ng-hide='isVerified' style='color:rgb(192, 76, 38);text-transform:uppercase;font-weight:700;padding:15px;text-align:left;'>
+              Unverified renter
+            </div>
+            <div flex ng-show='isVerified' style='color:rgb(46, 140, 5);text-transform:uppercase;font-weight:700;padding:15px;text-align:left;'>
+              Verified renter
+            </div>
+            <div flex>
+              <div layout='row' layout-align='start start'>
+                <div flex='10'>
+                  <i ng-show='dluploaded' class="fa fa-check-square-o" style='color:rgb(46, 140, 5);' aria-hidden="true"></i>
+                  <i ng-hide='dluploaded' class="fa fa-close" style='color:rgb(192, 76, 38);' aria-hidden="true"></i>
+                </div>
+                <div flex style="text-align: left; padding-left: 10px;">
+                  DL Uploaded
+                </div>
+              </div>
+            </div>
+            <div flex>
+              <div layout='row' layout-align='start start'>
+                <div flex='10'>
+                  <i ng-show='iduploaded' class="fa fa-check-square-o" style='color:rgb(46, 140, 5);' aria-hidden="true"></i>
+                  <i ng-hide='iduploaded' class="fa fa-close" style='color:rgb(192, 76, 38);' aria-hidden="true"></i>
+
+                </div>
+                <div flex style="text-align: left; padding-left: 10px;">
+                  ID Proof Uploaded
+                </div>
+              </div>
+            </div>
+            <div flex layout="row" layout-align="center center" style="padding-top: 20px;">
+              <md-button ng-click="$state.go('accounts.profile')" style="background-color:#153a94;max-width:150px;text-transform:uppercase;font-weight:700;margin:0 0 0 0;color:#ffffff">Edit My Profile</md-button>
+            </div>
+          </md-content>
+        </div>
+      </md-card>
+    </div>
+    <div layout="row" flex-order="2" layout-align="start start" style='width:100%;margin-top:5.8em;margin-bottom:40px'>
+      <div ng-controller="userProfile" style="min-height:500px;width:100%;margin-top:-7px">
+        <div ng-show='isReviews'>
+          <div layout="row" layout-align="center center">
+            <div flex>
+              <h2 style="background-color:#375cb6;color:#ffffff;width:90%;margin:auto;padding-top:0.45em;position:relative;height:65px">
+                Reviews
+              </h2>
+            </div>
+          </div>
+          <div layout="row" layout-align="center center">
+            <div style='width:90%;border-left:1px solid #eee;border-right:1px solid #eee'>
+              <md-list-item ng-repeat="i in profile.myReviews" style="background-color:#ffffff;color:#000000;height:6em;width:100%">
+                <div layout="row" layout-align="center center" style="width:100%">
+                  <div flex="10" style="">
+                    <img class="" style="width:50px;height:50px;border-radius:50%;" ng-src="{{i.reviewer.dp | mediaAsset}}"/>
+                  </div>
+                  <div flex="20" layout="column" layout-align="center start" style="padding-top:5px;margin-left:30px;">
+                    <h3 style="margin:0px 0px 0px 0px;text-transform:capitalize;text-align:left">
+                      {{i.reviewer.first_name}}
+                      {{i.reviewer.last_name}}
+                    </h3>
+                    <p style="margin:0 0 0 0;" ng-init="rates=reviewerrating()">
+                      <jk-rating-stars id="rate4" max-rating="5" rating="i.rating" read-only="true" class='star-rating'></jk-rating-stars>
+                    </p>
+                  </div>
+                  <div flex="" style="">
+                    <p style="font-size:14px;padding-top:5px;text-align:left">
+                      {{i.text}}
+                    </p>
+                  </div>
+                </div>
+                <md-divider></md-divider>
+              </md-list-item>
+            </div>
+          </div>
+        </div>
+        <div flex-offset-gt-sm="5"  ng-hide='isReviews' style="min-height:500px" layout-margin>
+          <div layout="row" layout-align="center center" style="margin-bottom:0px;">
+            <div flex>
+              <h2 style="background-color:#375CB6;color:#ffffff;margin:auto;padding-top:0.45em;position:relative;height:65px">
+                User Reviews
+              </h2>
+            </div>
+          </div>
+          <div layout="row" layout-align="center center" style="min-height:500px;margin-top:0px;">
+            <div style='width:90%;margin:auto;'>
+                <h4 style="font-size:2.5em;color:#757575;opacity:0.7;">
+                  No Reviews
+                </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

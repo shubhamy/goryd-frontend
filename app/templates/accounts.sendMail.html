@@ -1,0 +1,31 @@
+<div style="min-height:100vh">
+    <form name="feedback" style="margin:10px;" enter-press="submit()">
+        <h1 class="md-display-2" style="font-family:Roboto">Support Center</h1>
+        <div layout="row">
+            <md-input-container flex-gt-xs="75" flex="60" class="md-block" flex-gt-xs>
+                <label>Subject</label>
+                <input ng-model="subject">
+            </md-input-container>
+            <md-input-container style="text-align:left;" flex-gt-xs="25" flex="40" class="md-block" flex-gt-sm>
+                <label>Category</label>
+                <md-select ng-model="category">
+                    <md-option ng-repeat="i in cat" value="{{i}}">
+                        {{i}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div layout="column" flex>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Description</label>
+                <textarea rows="8" cols="40" style="max-height:150px;height:150px;overflow:auto;" ng-model="desc"></textarea>
+            </md-input-container>
+        </div>
+
+        <div flex>
+          <md-button ng-click="submit()" class="start-sharing" style="padding:3px 40px 3px 40px">
+            Submit
+          </md-button>
+        </div>
+    </form>
+</div>

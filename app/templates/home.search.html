@@ -1,0 +1,216 @@
+<style>
+.md-datepicker-input[placeholder] {
+   color:#eeeeee;
+ }
+ /*md-select.md-default-theme .md-select-value, md-select .md-select-value {
+        border-bottom-color: #eeeeee;
+ }
+ md-input-container.md-default-theme .md-input, md-input-container .md-input {
+   border-color: #eeeeee;
+ }*/
+ .md-datepicker-input-mask{
+   height: 0px;
+ }
+ md-icon.md-default-theme, md-icon {
+   color: #eeeeee;
+}
+.md-datepicker-input[placeholder] {
+  color:#ffffff;
+}
+md-select.md-default-theme .md-select-value, md-select .md-select-value {
+       border-bottom-color: #eeeeee;
+       /*border-left-color: 2px solid #eeeeee;*/
+}
+md-input-container.md-default-theme .md-input, md-input-container .md-input {
+  border-color: #eeeeee;
+}
+md-input-container{
+  padding: 0px;
+}
+md-input-container .md-input{
+  color: #424242;
+  padding-left: 10px;
+  height:40px;
+  background-color: #FFFFFF;
+}
+/*md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+
+  outline: none;
+  border-color: #9ecaed;
+  border-width: 1px;
+}*/
+/*md-input-container.md-default-theme label,
+md-input-container.md-default-theme .md-placeholder {
+    color: #FDFE67 !important;
+}*/
+/*md-datepicker style*/
+.md-datepicker-input-container{
+  border:1px solid #e0e0e0;
+  background-color: #ffffff;
+  font-size: 16px;
+  padding-bottom: 0px;
+  height: 38px;
+}
+md-datepicker .md-input-focused{
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 12px #4a75e0;
+}
+.md-datepicker-input[placeholder]{
+  color:#424242;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon{
+  fill:#eeeeee;
+}
+.md-datepicker-open{
+}
+.md-datepicker-input-mask{
+  height: 0px;
+}
+.md-default-theme .md-datepicker-calendar, .md-datepicker-calendar, .md-default-theme .md-datepicker-input-mask-opaque, .md-datepicker-input-mask-opaque{
+  background-color: #FFFFFF;
+}
+.md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator{
+  background-color:#163a91;
+}
+/*md-time-select style*/
+md-select.md-default-theme .md-select-value, md-select .md-select-value{
+  /*border: 1px solid #ffffff;*/
+    background-color: #eeeeee;
+    color: #626262;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-top: 0px;
+    /* padding-top: 6px; */
+    height: 36px;
+}
+</style>
+<div layout="column" hide-xs hide-sm layout-align="center center" class="search-bg" layout-fill style="position:relative; top:60px; height:45em;" enter-press="updateSearchParams()">
+  <div style="font-family:Roboto,sans-serif;overflow:hidden;">
+    <div class="md-whiteframe-4dp" layout="column" layout-align="start center" style="min-height:100vh;color:#ffffff">
+      <div layout="row">
+        <md-input-container style="width:100%; margin-top:23vh">
+          <div style="padding:10px;width:100%;display:inline-block;">
+            <p style="font-size:50px;text-align:center;text-transform:capitalize;margin-bottom:-10px;">
+              LIKE YOU OWN
+            </p>
+            <p style="font-size:18px;text-align:center">
+              Rent cars from our partners in Delhi and drive like you own
+            </p>
+            <input id="search" class="" style="width:100%;min-width:657.31px;border:1px solid #3f51b5" aria-label="Search Cars" places-auto-complete component-restrictions="{country:'in'}" type="text" ng-model="searchPlace" on-place-changed="placeChanged()" />
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="column" style="border:1px solid #3f51b5; background-color:#3f51b5; max-height:40px; margin-bottom:20px;">
+        <div layout="row" >
+          <div style="">
+            <md-datepicker style="color:#eeeeee;background-color:#ffffff;" md-on-close='' auto-open ng-model="d1" md-min-date="minDate" md-placeholder="Enter date" ng-init="openTime=false">
+            </md-datepicker>
+            <span class="displayDateSmall" >
+              {{d1  | date:'dd-MMM-yyyy'}}
+            </span>
+          </div>
+          <md-input-container  style="margin:0 0 0 0">
+            <md-select id='timeStart' md-on-close='' ng-model="t1" aria-label="select time" focus-me="openTime" style="">
+              <md-option ng-repeat="t in time1" value="{{t}}">
+                {{t}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <div>
+            <md-datepicker id='dateEnd' auto-open ng-model="d2" md-min-date="sDate" md-placeholder="Enter date" style="background-color:transparent">
+            </md-datepicker>
+            <span class="displayDateSmall">
+              {{d2 | date:'dd-MMM-yyyy'}}
+            </span>
+          </div>
+          <md-input-container style="margin:0 0 0 ;">
+            <md-select id='timeEnd' ng-model="t2" aria-label="select time">
+              <md-option ng-repeat="t in time2" value="{{t}}">
+                {{t}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <div class="" ng-click="updateSearchParams()" style="color:#ffffff; text-transform: none; border:1px solid #3f51b5; width:100%; background-color:#3f51b5">
+            <p style="font-size:24px;padding:0px 22px 0px 22px;margin: 0 0 0 0;">
+              <i class="fa fa-search fa" aria-hidden="true" style="color: white;"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div layout="column" hide-gt-sm layout-align="center center" class="search-bg" layout-fill style="position:relative; top:54px; height:100vh;">
+  <div style="font-family:Roboto,sans-serif;overflow:hidden; margin-top:9vh">  
+    <md-input-container layout-margin>
+        <p style="font-size:40px;text-align:center;text-transform:capitalize">
+          LIKE YOU OWN
+        </p>
+        <p style="font-size:18px;text-align:center">
+          Rent cars from our partners in Delhi and drive like you own
+        </p>
+        <input id="search" class="" style="border:1px solid #3f51b5;position: relative;left: -10px;" aria-label="Search Cars" places-auto-complete component-restrictions="{country:'in'}" type="text" ng-model="searchPlace" on-place-changed="placeChanged()" />
+    </md-input-container>
+    <p style="text-align:left;padding-left:16px;">From</p>
+    <div style="background-color" flex >
+        <md-datepicker flex="15" style="color:#eeeeee;background-color:#ffffff;float:left;position:relative;top:-8px;" md-on-close='' auto-open ng-model="d1" md-min-date="minDate"  ng-init="openTime=false">
+        </md-datepicker>
+        <span flex="40"  style="font-size:18px" >
+          {{d1  | date:'dd-MMM-yyyy'}}
+        </span>
+        <md-input-container flex="45"  style="margin:0 0 0 20px">
+          <md-select id='timeStart' md-on-close='' style="height: 30px;" ng-model="t1" aria-label="select time" focus-me="openTime" style="">
+            <md-option ng-repeat="t in time1" value="{{t}}" >
+              {{t}}
+            </md-option>
+          </md-select>
+          <style>
+          @media (max-width: 960px){
+              .md-text{font-size: 16px;position: relative;top: -2px;}
+              md-input-container>md-select{
+                width:120px;
+              }
+              .md-datepicker-input-container{
+                display: block;
+                height: 0px;
+              }
+          }
+          </style>
+        </md-input-container>
+
+    </div>
+    <p style="text-align:left;margin-top:30px;padding-left:16px;">To</p>
+    <div style="background-color" flex >
+        <md-datepicker id='dateEnd' flex="15" style="color:#eeeeee;background-color:#ffffff;float:left;position:relative;top:-8px; " auto-open ng-model="d2" md-min-date="sDate" md-placeholder="Enter date" style="background-color:transparent">
+        </md-datepicker>
+        <span  flex="40"  style="font-size:18px;" >
+          {{d2 | date:'dd-MMM-yyyy'}}
+        </span>
+      <md-input-container flex="50"   style="height: 30px;margin:0 0 0 20px">
+        <md-select id='timeEnd' ng-model="t2" aria-label="select time" md-on-close='' style="height: 30px;"   focus-me="openTime" style="">
+          <md-option ng-repeat="t in time2" value="{{t}}">
+            {{t}}
+          </md-option>
+        </md-select>
+          <style>
+          @media (max-width: 960px){
+              .md-text{font-size: 16px;position: relative;top: -2px;}
+              md-input-container>md-select{
+                width:120px;
+              }
+              .md-datepicker-input-container{
+                display: block;
+                height: 0px;
+              }
+          }
+          </style>
+        </md-input-container>
+        <div class="" ng-click="updateSearchParams()" style="color:#ffffff; text-transform: none; width:20%;margin:50px auto auto auto; font-size:40px">
+          <i class="fa fa-search fa" aria-hidden="true" style="color: white;"></i>
+        </div>
+    </div>
+  </div>
+</div>

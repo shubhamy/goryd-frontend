@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="main">
+
+<!-- If you are viewing this then we have a job offer for you -->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="It’s a self-driven car rental marketplace for and run by a community.">
+    <meta name="author" content="2016 Eneo Technologies Pvt. Ltd.">
+    <meta name="keywords" content="Hire Car Services, Luxury Car Rental Services, Cab Hire Services, Car on Rent, Car Rental Company India, Cab Rental Services, Cheap Car Rental, Holiday Car Rental Services, Best Car Rental Company, Car Rentals India, Cab Rental Services Delhi, Car Hire Delhi, Car Hire in India, Car Hire Services Delhi, Car On Rent in Delhi, Car Rental Delhi, Rent a Car in India, Car Hire Company India,  Rent a Car in India,Car Hire Gurgaon, India's No. 1 Car Rental Website, Self Drive Car Rentals India, Self Drive Car Rental, Car Rentals, Book A Cab in India, Travel, Car Rental India, Top Car Rental Website in India, Self Driven Car Rentals in India, Car Leasing, Cars on Rent, Car on Rent, Car Hire, Taxi,  Car Rentals">
+    <meta name="google-signin-client_id" content="551396169237-ump9qf0icefif4nj2o7dto12rl3nenc7.apps.googleusercontent.com">
+    <link rel="shortcut icon" type="image/png" href="goryd-favicon.png"/>
+    <title>Goryd | Cars from Local Owners for Rent</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/angular-material/angular-material.min.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css"> -->
+    <link href="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="css/goryd.min.css" rel="stylesheet">
+    <link href="bower_components/Croppie/croppie.css" rel="stylesheet" type="text/css">
+    <!-- <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-77388156-1', 'auto');
+  ga('send', 'pageview');
+    </script>
+ </head>
+  <body data-spy="scroll" data-target=".navbar-fixed-top">
+    <div ng-init="loading = true;" ng-if="loading" layout="column" layout-align="center center" style="height:100vh;width:100%;background:white;z-index:1000;position:fixed;color:#4378F8" class="text-center">
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"stroke-miterlimit="10"/>
+        </svg>
+      </div>
+    </div>
+    <md-toolbar id="page-top" flex class="header-toolbar" ng-hide="loadingIcon" style="background-color:#1F3C8E;z-index:80" layout="row" show-gt-md>
+      <div flex="50" flex-gt-sm="15">
+        <div layout="row"  class="page-scroll " layout-align="start start" show-gt-sm hide-sm hide-xs ng-click="logoclick()" style="margin-left:50px; margin-top:11px">
+          <img ng-src="images/logo_white.png" style="width:120px; height:40px">
+        </div>
+        <div layout="row" class="page-scroll " layout-align="start start" hide-gt-sm ng-click="logoclick()" style="margin-left:70px;margin-top:11px;">
+          <img ng-src="images/logo_white.png"  style="width:120px;height:40px;">
+        </div>
+      </div>
+      <div flex-gt-sm="75" show-gt-md layout="row" layout-align="end center" hide-sm hide-xs>
+        <section layout="row" class="header-text" layout-sm="column" layout-align="center center" layout-wrap>
+          <a class="page-scroll " layout="row" layout-align="center center" href="#share-your-car" ng-click="$state.go('listnow')" md-button style="padding-left: 10px;padding-right: 10px;text-transform:none;">
+            <div style="border: solid 1px #eee;padding-left: 15px;padding-right: 15px;">
+              Become our partner
+            </div>
+          </a>
+          <!-- <a class="page-scroll " layout="row" layout-align="center center" href="#why" ng-click="resetTempItems('why')" md-button style="padding-left: 10px;padding-right: 10px;text-transform:none;">
+            Why us
+          </a> -->
+          <a class="page-scroll " layout="row" layout-align="center center" href="#how-it-works" ng-click="resetTempItems('how')" md-button style="padding-left: 10px;padding-right: 10px;text-transform:none;">
+            How it works
+          </a>
+        </section>
+      </div>
+      <div flex="50" flex-gt-sm="10" show-gt-md layout="row" layout-align="end center">
+        <section layout="row" class="header-text" layout-align="center center" layout-wrap style="margin-right: 0px;">
+          <a class="page-scroll " layout="row" layout-align="center center" href="" ng-click="toggleLoginForm()" ng-if="!logged" md-button>
+            Login
+            <i class="fa fa-sign-in "></i>
+          </a>
+        </section>
+        <div ng-if="logged">
+          <a ng-click="$state.go('userProfile')" href="">
+            <img ng-src="{{profile.dp | mediaAsset}}"  class="profile-logo" alt="{{item.who}}" />
+          </a>
+          <md-menu md-position-mode="target-right target" md-offset="-10 70" style="margin:0px;">
+            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)" style="margin: 0 0 0 0;padding: 5px 0 0 0;">
+              <i class="fa fa-ellipsis-v" aria-hidden="true" style="font-size:24px; "></i>
+            </md-button>
+            <md-menu-content width="6 " style="width:150px;">
+              <section layout="row" layout-sm="column" layout-align="center center" flex layout-wrap>
+                  <div class="account-menu-md-button" style="text-align:center;color: #4378F8;text-transform:uppercase">
+                    <div style="padding: 4px 0 4px 0">
+                      {{profile.user.first_name}}
+                    </div>
+                    <md-button class="toolbar-md-button" ng-click="$state.go('userProfile')">
+                      <i class="fa fa-user fa-md-menu-content" aria-hidden="true" style="padding-right:10px"></i>
+                      My Profile
+                    </md-button>
+                    <md-button class="toolbar-md-button" ng-click="$state.go('accounts.requested')">
+                      <i class="fa fa-bookmark fa-md-menu-content" aria-hidden="true" style="padding-right:12px"></i>
+                      My Bookings
+                    </md-button>
+                    <md-button class="toolbar-md-button" ng-click="$state.go('myListing.listings')" ng-show="ownerHasListing" >
+                      <i class="fa fa-car fa-md-menu-content" aria-hidden="true" style="padding-right:6px"></i>
+                      My Cars
+                    </md-button>
+                    <md-button class="toolbar-md-button" ng-click="$state.go('accounts.sendMail')">
+                      <i class="fa fa-info fa-md-menu-content" aria-hidden="true" style="padding-left: 5px;padding-right:13px"></i>
+                      Help
+                    </md-button>
+                    <md-button class="toolbar-md-button" ng-click="logout()">
+                      <i class="fa fa-sign-out fa-md-menu-content" aria-hidden="true" style="padding-right:9px"></i>
+                      Logout
+                    </md-button>
+                  </div>
+              </section>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </md-toolbar>
+    <div ng-click="openLeftMenu()" style="position:fixed;top:18px;left:20px;z-index:100;" hide-gt-sm>
+      <i class="fa fa-bars" aria-hidden="true" style="font-size:26px;color:#ffffff"></i>
+    </div>
+    <md-sidenav flex-order-gt-sm="30" ng class="md-whiteframe-z4" md-is-open="isSidenavOpen" md-component-id="left" style="position:fixed;width: 300px;max-width: 300px !important;min-width: 200px !important;height: 100%;top: 0px;left: 0px; z-index:150;">
+      <md-toolbar class="md-theme-indigo" style="height:54px;background-color:#30589E; padding-left: 40px;">
+        <h1 class="md-toolbar-tools" style="padding-left:0px;">
+          Menu
+        </h1>
+      </md-toolbar>
+      <md-content>
+        <div
+          class=""
+          layout="column"
+          layout-align="center center"
+          layout-wrap
+          ng-if="$state.is('accounts')||$state.is('accounts.profile')||$state.is('accounts.requested')||$state.is('accounts.ongoing')||$state.is('accounts.completed')||$state.is('accounts.listings')||$state.is('accounts.earnings')||$state.is('accounts.contactUs')||$state.is('accounts.sendMail')">
+          <md-toolbar class="md-theme-indigo" style="position:fixed;top:0px;height:54px;background-color:#314554;">
+            <h1 class="md-toolbar-tools">
+              Accounts
+            </h1>
+          </md-toolbar>
+          <ul id="menuAccounts" class="account-sidenav-ele">
+            <li ng-click="$state.go('accounts.profile');toggleProfilemenu()" md-button>
+              <i class="fa fa-user fa-md-menu-content" aria-hidden="true"></i>
+              Edit My Profile
+            </li>
+            <div class="order-slide-{{firstheadActive==true ? 'up' : 'down'}}">
+              <li md-button ng-click="toggleOrdermenu();">
+                <i class="fa fa-car fa-md-menu-content" style="font-size:18px;padding-right:13px " aria-hidden="true"></i>
+                  <i class="fa fa-chevron-down arrow1-{{firstheadActive==true ? 'up' : 'down'}} " style="align:left;font-size:12px;" aria-hidden="true"></i>My Bookings
+              </li>
+              <div class="slideDown1" ng-hide="!firstheadActive">
+                <ul class="account-sub-menu">
+                  <li md-button ng-click="$state.go('accounts.requested');openLeftMenu()">Requested bookings</li>
+                  <li md-button ng-click="$state.go('accounts.ongoing');openLeftMenu()">Upcoming Bookings</li>
+                  <li md-button ng-click="$state.go('accounts.completed');openLeftMenu()">Past Bookings</li>
+                </ul>
+              </div>
+            </div>
+            <div class="support-slide-{{secondheadActive==true ? 'up' : 'down'}}" style="border-bottom:1px solid #E0E0E0;">
+              <li md-button ng-click="toggleSupportmenu()" main-navbar-md-button>
+                <i class="fa fa-phone fa-md-menu-content" style="font-size:18px; " aria-hidden="true"></i>
+                <i class="fa fa-chevron-down arrow1-{{ secondheadActive==true ? 'up' : 'down'}} " style="align:left;font-size:12px;" aria-hidden="true"></i>Need Help?
+              </li>
+              <div class="slideDown2" ng-hide="!secondheadActive">
+                <ul class="account-sub-menu">
+                  <li md-button ng-click="$state.go('accounts.sendMail');openLeftMenu()">Support</li>
+                  <li md-button ng-click="$state.go('accounts.contactUs');openLeftMenu()">Contact Us</li>
+                </ul>
+              </div>
+            </div>
+          </ul>
+        </div>
+        <div class="" layout="column" layout-align="center center" layout-wrap ng-if="$state.is('myListing')||$state.is('myListing.requested')||$state.is('myListing.completed')||$state.is('myListing.ongoing')||$state.is('myListing.listings')">
+          <md-toolbar class="md-theme-indigo" style="position:fixed;top:0px;height:54px;background-color:#314554;">
+            <h1 class="md-toolbar-tools">
+              Accounts (owner)
+            </h1>
+          </md-toolbar>
+          <ul id="menuAccounts" class="account-sidenav-ele">
+            <li md-button ng-click="$state.go('myListing.requested');">Requested Trips</li>
+            <li md-button ng-click="$state.go('myListing.ongoing');">Upcoming Trips</li>
+            <li md-button ng-click="$state.go('myListing.completed');">Past Trips</li>
+            <li md-button ng-click="$state.go('myListing.listings');">My cars</li>
+          </ul>
+        </div>
+        <md-divider>
+        </md-divider>
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+          <div class="main-navbar-nav" style="z-index:2">
+            <li class="page-scroll main-navbar-md-button" href="#share-your-car" md-button ng-click="resetTempItems();openLeftMenu()">Become our partner</li>
+            <!-- <li class="page-scroll main-navbar-md-button" href="#why" md-button ng-click="resetTempItems();openLeftMenu()">Why Goryd</li> -->
+            <li class="page-scroll main-navbar-md-button" href="#how-it-works" md-button ng-click="resetTempItems();openLeftMenu()">How it works</li>
+          </div>
+        </section>
+      </md-content>
+    </md-sidenav>
+    <div class="login {{data.showLoginForm ? '':'hideLogin'}}" ng-include="'templates/login.html'" style="z-index:160;">
+    </div>
+    <div ng-click="resetTempItems()" style="cursor:inherit;" ng-if="!data.showRegister">
+      <!-- Intro Header -->
+      <header class="intro" style="{{$state.is('home') ? 'padding-top: 0px;' : 'background:white;'}};">
+        <div class="" style="background-color:#ffffff;min-height:100vh;">
+          <div ui-view style="width:100%;height:auto;"></div>
+        </div>
+      </header>
+      <section id="how" class="text-center" style="background-color:#FFFFFF;width:100%;" ng-if="$state.is('home')">
+        <div class="">
+          <div class="" style="width:100%">
+            <div ng-include="'templates/home.how.html'" style=""></div>
+          </div>
+        </div>
+      </section>
+      <md-divider class="divider" md-insert style="margin-left:0"></md-divider>
+      <section id="why" class=" whyus" style="" ng-if="$state.is('home')">
+        <div class="" style="position:relative;">
+          <div ng-include="'templates/home.why.html'"></div>
+        </div>
+      </section>
+      <section  class="contactUs" style="" ng-if="$state.is('home')">
+        <div class="" style="position:relative;">
+          <div ng-include="'templates/contactUs.html'"></div>
+        </div>
+      </section>
+    </div>
+
+    <div ng-include="'templates/navigate-to-top.html'" hide-xs hide-sm  ng-if='$state.is("home")' id="navigateToTop" width='100%'>
+    </div>
+
+    <div style="z-index:100">
+      <footer ng-if="!($state.is('list') || data.showLoginForm || $state.is('accounts')||$state.is('accounts.profile')||$state.is('accounts.requested')||$state.is('accounts.ongoing')||$state.is('accounts.completed')||$state.is('accounts.listings')||$state.is('accounts.earnings')||$state.is('accounts.contactUs')||$state.is('accounts.sendMail')||$state.is('myListing')||$state.is('myListing.requested')||$state.is('myListing.completed')||$state.is('myListing.ongoing')||$state.is('myListing.listings'))" style="">
+        <div layout="row" ng-controller="home.subscribe" layout-align="center center" style="color:white; padding:10px;z-index:50;" layout-xs="column">
+          <div layout="column" flex>
+            <div flex style="padding:5px;">
+              <div layout="row" class='textalign' layout-align-gt-sm="start start" layout-align-sm="none center" layout-align-xs="none center" style="color:white; padding:20px; padding-left:7em; padding-right:7em; font-size: 13px;" layout-xs="column">
+                <div layout='column' layout-align-gt-sm="start start" layout-align-sm="none center" layout-align-xs="none center" flex>
+                  <img ng-src="images/logo_white.png" style="width:120px; height:40px">
+                  <p>
+                    <br />
+                    +91-9833570048
+                  </p>
+                  <div flex>
+                    <!-- <md-button aria-label="Twitter" class="md-fab md-raised md-mini md-social-btn" style="background-color:#55ACEE;" href="https://www.twitter.com/GorydStar/">
+                      <i class="fa fa-twitter fa-social-icon" aria-hidden="true" style="color:white;font-size:22px;padding-top:9px;">
+                      </i>
+                    </md-button> -->
+                    <md-button aria-label="Facebook" class="md-fab md-raised md-mini md-social-btn" style="background-color:#3b5998;" href="https://www.facebook.com/GorydStar/">
+                      <i class="fa fa-facebook fa-social-icon" aria-hidden="true" style="color:white;font-size:22px;padding-top:9px;">
+                      </i>
+                    </md-button>
+                    <md-button aria-label="Linkedin" class="md-fab md-raised md-mini md-social-btn" style="background-color:#0077B5;" href="https://www.linkedin.com/company/goryd/">
+                      <i class="fa fa-linkedin fa-social-icon" aria-hidden="true" style="color:white;font-size:22px;padding-top:9px;">
+                      </i>
+                    </md-button>
+                  </div>
+                </div>
+                <div flex hide-sm hide-xs>
+                  <p align='center' style="margin-bottom:8px">
+                      Coming soon!
+                  </p>
+                  <p align='center'>
+                    <span style='margin:auto;'>
+                      <i class="fa fa-android fa-3x" aria-hidden="true" style="color:#6AB344;"></i>
+                    </span>
+                  </p>
+                </div>
+                <div flex flex-offset-gt-sm='10'>
+                  <a href ng-click="$state.go('aboutus')" style="color:white;">About us</a>
+                  <br/>
+                  <a href ng-click="$state.go('terms')" style="color:white;">Terms</a>
+                  <br/>
+                  <a href ng-click="$state.go('privacy')" style="color:white;">Privacy</a>
+                  <br/>
+                  <a href ng-click="$state.go('career')" style="color:white;">Careers</a>
+                  <br/>
+                  <a href ng-click="$state.go('faqs')" style="color:white;">FAQs</a>
+                </div>
+                <div flex>
+                  <a href ng-click="$state.go('eligibility')" style="color:white;">Eligibility</a>
+                  <br/>
+                  <a href ng-click="$state.go('renterPolicy')" style="color:white;">Renters Policy</a>
+                  <br/>
+                  <a href ng-click="$state.go('ownerPolicy')" style="color:white;">Owner Policy</a>
+                  <br/>
+                  <a href ng-click="$state.go('paymentTerms')" style="color:white;">Payment Terms</a>
+                </div>
+                <div flex>
+                  <a href ng-click='' style="color:white;">Renter's guidelines</a>
+                  <br />
+                  <a href ng-click='' style="color:white;">Partner's guidelines</a>
+                </div>
+              </div>
+              <div flex style="padding:5px;font-size:16px;" align="center">
+                &copy; 2016 Eneo Technologies Pvt. Ltd.
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="http://maps.google.com/maps/api/js?libraries=places&key=AIzaSyB_DOelJwkNrVHwVvQu28J_Uy85oNn-ur4"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+    <script src="bower_components/jquery.easing/js/jquery.easing.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script> -->
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script> -->
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script> -->
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script> -->
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script> -->
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script> -->
+    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.0/angular-material-icons.min.js"></script> -->
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-cookies.min.js"></script> -->
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.js"></script>
+    <script src="bower_components/material-calendar/dist/angular-material-calendar.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.5/angular-sanitize.js"></script> -->
+    <script src="bower_components/tendina/dist/tendina.min.js"></script>
+    <script src="bower_components/Croppie/croppie.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/goryd.js"></script>
+    <!-- <script src="https://use.fontawesome.com/1bf11b5889.js"></script> -->
+  </body>
+</html>

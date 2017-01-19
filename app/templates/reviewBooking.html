@@ -1,0 +1,38 @@
+<md-card class="md-whiteframe-3dp" style="max-width:270px;float:left;">
+    <div layout='column' style="max-width:270px;max-height:500px;">
+      <h5 style="margin-bottom:0px;padding-bottom: 2px;padding-left: 10px;opacity:0.8;" ng-show = 'customer'>Please rate the car </h5>
+      <h5 style="margin-bottom:0px;padding-bottom: 2px;padding-left: 10px;opacity:0.8;" ng-hide = 'customer'>Please rate the customer</h5>
+        <div ng-show = 'customer' flex style="background-color:#4a7ab0;" style="max-width:270px;max-height:202px">
+            <img ng-src="{{reviewBooking.vehicle.media[0] | mediaAssetcar}}" class="md-card-image" alt="car Photo" style="max-width:270px;max-height:202px">
+        </div>
+        <div ng-hide = 'customer' flex style="background-color:#4a7ab0;" style="max-width:270px;max-height:202px">
+            <img ng-src="{{reviewBooking.customer.dp | mediaAsset}}" class="md-card-image" alt="car Photo" style="max-width:270px;max-height:202px">
+        </div>
+        <div flex style=" text-align:left;padding:16px 16px 16px 16px;" layout="column">
+            <div layout="row" layout-align="start end" style="padding:10px 0 10px 0;" ng-show='customer'>
+                <h4 style="margin-bottom:0px">{{reviewBooking.vehicle.model}} </h4>
+                <h5 style="margin-bottom:0px;padding-bottom: 2px;padding-left: 10px;opacity:0.8;">{{reviewBooking.vehicle.maker}} </h5>
+            </div>
+            <div layout="row" layout-align="start end" style="padding:10px 0 10px 0;" ng-hide='customer'>
+                <h4 style="margin-bottom:0px">{{reviewBooking.customer.first_name}} </h4>
+            </div>
+            <md-divider></md-divider>
+            <span class="md-subhead" style="padding-bottom:10px">Booking ID: {{reviewBooking.bookingId}}</span>
+            <span class="md-subhead" style="padding-bottom:10px">Total Cost: <i class="fa fa-inr" aria-hidden="true"></i> {{reviewBooking.totalCost}}</span>
+            <md-input-container class="md-block" flex-gt-sm style='padding:0px;'>
+                <label>Comments</label>
+                <textarea rows="2" cols="40" style="max-height:50px;height:50px;overflow:auto;" ng-model="feedback"></textarea>
+            </md-input-container>
+                <div layout="row" layout-align="center center">
+                    <jk-rating-stars id="rate" max-rating="5" rating="rating" read-only="false" on-rating="onRating(rating)" class='starsMy'></jk-rating-stars>
+                </div>
+                <div style='text-transform:none;font-size:16px;text-align:center'>
+                  {{reviewResponse}}
+                </div>
+                <br />
+            <div flex layout="row" layout-align="center center">
+                <md-button ng-click="reviewSubmit(feedback,rating)" class="md-raised" style="background-color:#0e3752; color:white;max-width:100px;text-transform:uppercase;font-weight:700;margin:0 0 0 0;float:right;">Submit</md-button>
+            </div>
+        </div>
+    </div>
+</md-card>

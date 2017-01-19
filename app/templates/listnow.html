@@ -1,0 +1,149 @@
+<div  ng-show="loadingIconShareNow" style="position:fixed;background-color:black;opacity:0.3;top:0;left:0;width:100%;height:100%;z-index:200;">
+</div>
+<div  ng-show="loadingIconShareNow"   class=" loading-spinner text-center" style="position:fixed;height:100vh;left:0px;z-index:100000;overflow:hidden;background:transparent;">
+  <div class="loader" layout="row" style="height:100%;overflow:hidden;" layout-align="center center">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"stroke-miterlimit="10"/>
+    </svg>
+    <p style="font-size:15px;color:#0433BC">Loading</p>
+  </div>
+</div>
+<div style="width:100%;margin:0px;padding:0px;overflow-x: hidden">
+
+  <div layout="column" layout-align="center center" class="listnow" layout-fill style="min-height:80vh;position:relative;top:50px">
+    <div flex>
+      <p style="color:white; margin: 0 0 0 0; font-size:50px; margin:13% 0 0 0">Let your car earn for your family</p>
+      <p style="font-size: 25px;" style="color:white">
+        Earn money,
+        <span style="color:#08c64a">save the planet</span>
+      </p>
+    </div>
+    <div flex>
+      <md-button class="start-sharing" ng-click="checkLastlisting()">Start sharing</md-button>
+    </div>
+  </div>
+
+  <div layout="column" layout-align="center none" style="padding: 100px 50px 50px 50px;background-color:white;">
+    <h2>Put your idle car to work</h2>
+    <p class="theme-text" style="margin:0 0 3em 0">
+      Goryd partners make upto &#8377 80,000 per month with our trusted community
+    </p>
+    <div layout="row" layout-align-gt-sm="start none" layout-sm="column" layout="none start">
+      <div flex style="margin: 0 3em 0 3em">
+        <p style="font-size:20px; text-align:left;">
+          Make a profitable investment
+        </p>
+        <p class="theme-text" style="text-align:justify; font-size:15px;">
+          Car is a liability not an asset. It loses money as soon as you start driving. Rather than letting your car depreciate, share it on Goryd.
+        </p>
+      </div>
+      <div flex style="margin: 0 3em% 0 3em%">
+        <p style="font-size:20px; text-align:left">
+          Earn &#8377 10,000 a week
+        </p>
+        <p class="theme-text" style="text-align:justify; font-size:15px">
+          The average Goryd partner earns &#8377 10,000 per week. It's more than the cost of owning a car. Let your car take care of itself.
+        </p>
+      </div>
+      <div flex style="margin: 0 3em 0 3em">
+        <p style="font-size:20px; text-align:left">
+          Share it when you want
+        </p>
+        <p class="theme-text" style="text-align:justify; font-size:15px">
+          If you want to go on a vacation with your family, mark your car inactive. Share it only when it's sitting at home.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div layout="row" layout="column" layout-align="start center" style="padding: 50px 50px 50px 50px; background-color:#FAFAFF; color:#000000">
+    <div flex></div>
+    <div layout="column" flex="40">
+      <p>If you rent out you car for
+        {{rentedDays}}
+        days,<br/>
+        You can earn upto</p>
+      <h2 style="color:#536DFE">&#8377
+        {{rentedDays*marketPrice*100000/500}}</h2>
+      <p>per month</p>
+    </div>
+    <div flex="40">
+      <div layout="column">
+        <div flex ng-init="rentedDays=20; marketPrice=10">
+          <p style="font-size: 20px">Adjust the sliders to see how much you can earn
+          </p>
+        </div>
+        <div flex>
+          <p style="font-size:15px">I bought my car for &#8377
+            {{marketPrice}}
+            lakhs
+          </p>
+          <md-slider ng-model="marketPrice" step="1" min="1" max="50" aria-label="marketPrice"></md-slider>
+        </div>
+        <div flex>
+          <p style="font-size:15px">My car sits at home
+            {{rentedDays}}
+            days a month
+          </p>
+          <md-slider ng-model="rentedDays" step="1" min="0" max="31" aria-label="rentedDays"></md-slider>
+        </div>
+      </div>
+    </div>
+    <div flex></div>
+  </div>
+
+  <div layout="column" layout-align="center none" style="padding: 50px 50px 50px 50px;background-color:white;">
+    <h2>Why people love to share on Goryd</h2>
+    <p class="theme-text" style="margin:0 0 3em 0">
+      Because there is more than just money
+    </p>
+    <div layout="row" layout-align-gt-sm="start none" layout-sm="column" layout="none start">
+      <div flex style="margin: 0 3em 0 3em">
+        <p style="font-size:20px; text-align:left;">
+          Free Goryd credit
+        </p>
+        <p class="theme-text" style="text-align:justify; font-size:15px">
+          Rent out your car for more than 10 days and get free Goryd credits worth &#8377 3000. Use them to rent any car of your choice from the community.
+        </p>
+      </div>
+      <div flex style="margin: 0 3em 0 3em">
+        <p style="font-size:20px; text-align:left">
+          Save environment
+        </p>
+        <p class="theme-text" style="text-align:justify; font-size:15px">
+          Every single car shared on Goryd knocks 5 cars off the road. It means more parking and less pollution. Feel good by saving the environemnt.
+        </p>
+      </div>
+      <div flex style="margin: 0 3em 0 3em">
+        <p style="font-size:20px; text-align:left">
+          Meet awesome people
+        </p>
+        <p class="theme-text" style="text-align:justify; font-size:15px">
+          Our guests are engineers, doctors, lawyers, artists, scientists, businessmen. You will be surprised to see how respectful and faithful they are.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div layout="row" layout-align="start center" style="padding: 50px 0 50px 100px;background-color:#FAFAFF;">
+    <div flex="40" layout="column" layout-align="center none" style="text-align: left">
+      <p style="font-size: 35px; margin: 0 0 0 0;color:#000000">Join us and start earning</p>
+      <p style="margin: 0 0 0 0; padding-bottom:5px;" class="theme-text">
+        Listing your car on Goryd platform is completely free
+      </p>
+    </div>
+    <div flex align="right" flex>
+      <md-button class="big-button" ng-click="checkLastlisting()">
+        Sign up
+        <br/>
+        for your car
+        <br/>
+        <div id="big-button-icons">
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </div>
+      </md-button>
+    </div>
+    <div flex="10"></div>
+  </div>
+
+</div>

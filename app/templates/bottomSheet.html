@@ -1,0 +1,50 @@
+<md-bottom-sheet class="md-list md-has-header" ng-cloak style="position:fixed;min-height:600px;text-align:center;padding-top:60px;background:white;" ng-controller='home'>
+    <div class="container">
+        <div class="row">
+            <img ng-if="$state.is('home')" class="animatedImg" src="images/animatedCar.gif"/>
+            <div class="col-md-10 col-md-offset-1">
+                <p class="intro-text" style="font-size:30px" ng-if="$state.is('home')">Rent a car from someone like you</p>
+                <div flex="80" flex-offset="10">
+                    <md-input-container class="md-block">
+                        <md-icon md-svg-src="img/icons/ic_place_24px.svg" style="display:inline-block"></md-icon>
+                        <input id="search" aria-label="search"  places-auto-complete component-restrictions="{country:'in'}" type="text" ng-model="searchPlace" on-place-changed="placeChanged()"/>
+                    </md-input-container>
+                </div>
+                <div class="row">
+                    <div class="col-md-5" style="position:relative;">
+                        <md-datepicker auto-open ng-model="d1" md-min-date="minDate" md-placeholder="Enter date" ng-init="openTime=false" style="background-color:transparent"></md-datepicker>
+                        <span class="displayDateSmall">
+                            {{d1  | date:'dd-MMM-yyyy'}}
+                        </span>
+                        <md-input-container >
+                            <md-select ng-model="t1" aria-label="select time" focus-me="openTime" style="padding-top:4px;">
+                                <md-option ng-repeat="t in time1" value="{{t}}">
+                                    {{t}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div class="col-md-2" style="font-size:20px;">
+                        To
+                    </div>
+                    <div class="col-md-5" style="position:relative;">
+                        <md-datepicker auto-open ng-model="d2" md-min-date="sDate" md-placeholder="Enter date" style="background-color:transparent"></md-datepicker>
+                        <span class="displayDateSmall">
+                            {{d2 | date:'dd-MMM-yyyy'}}
+                        </span>
+                        <md-input-container>
+                            <md-select ng-model="t2" aria-label="select time" style="padding-top:4px;">
+                                <md-option ng-repeat="t in time2" value="{{t}}">
+                                    {{t}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+                <md-button class="md-raised" ng-click="updateSearchParams()" style="background-color:rgba(26, 24, 20, 0.7); color:white;text-transform: none;">
+                  <i class="fa fa-search"  style="cursor:pointer;"></i> Search
+                </md-button>
+            </div>
+        </div>
+    </div>
+</md-bottom-sheet>

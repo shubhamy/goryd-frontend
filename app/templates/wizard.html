@@ -1,0 +1,19 @@
+<div layout="row" layout-align="center center" >
+    <div flex style="align:left" ng-if='showNextprev'>
+        <md-button ng-if="currentStepIndex!=0" ng-click="gotoPrev()">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Prev
+        </md-button>
+    </div>
+    <span ng-repeat="step in stepList track by $index">
+      <md-button ng-disabled="!flagMarker[$index]" ng-click="gotoStep($index)" class="{{currentStepIndex==$index ? 'activeButton' : 'regularButton' }}" style="text-transform: capitalize">
+          {{step}}<br/>
+      </md-button>
+    </span>
+    <div flex style="align:right" ng-if='showNextprev'>
+        <md-button ng-if="currentStepIndex!=(nSteps-1)" ng-click="gotoNext()">
+            Next
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </md-button>
+    </div>
+</div>

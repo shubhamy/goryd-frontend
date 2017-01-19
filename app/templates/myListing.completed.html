@@ -1,0 +1,27 @@
+<div style="min-height:100vh">
+    <h1 class="md-display-2" style="padding-top:30px; font-family: Roboto">Past Trips</h1>
+    <div class='md-padding' layout="row" layout-wrap layout-align="start start">
+        <div ng-repeat="booking in bookings">
+          <md-card class="md-whiteframe-3dp" style="">
+              <div layout='column' style="max-width:270px;max-height:500px;">
+                  <div flex style="background-color:#4a7ab0;" style="max-width:270px;max-height:202px">
+                    <img ng-src="{{booking.vehicle.media[0] | mediaAssetcar}}" class="md-card-image" alt="car Photo" style="width:270px;height:202px">
+                  </div>
+                  <div flex style=" text-align:left;padding:16px 16px 16px 16px;" layout="column">
+                      <div layout="row" layout-align="start end" style="padding:10px 0 10px 0;">
+                          <h4 style="margin-bottom:10px">{{booking.vehicle.model}} </h4>
+                          <h5 style="margin-bottom:10px;padding-bottom: 2px;padding-left: 10px;opacity:0.8;">{{booking.vehicle.maker}} </h5>
+                      </div>
+                      <md-divider style="padding-bottom:10px"></md-divider>
+                      <span class="md-subhead" style="padding-bottom:10px">Registration:{{booking.vehicle.regNum}}</span>
+                      <span class="md-subhead" style="padding-bottom:10px">Booking ID: {{booking.bookingId}}</span>
+                      <!-- <span class="md-subhead" style="padding-bottom:10px">Details</span> -->
+                      <span class="md-subhead" style="padding-bottom:10px">From: {{booking.pickupTime | date : 'dd-MMM-yyyy , hh:mm a'}}</span>
+                      <span class="md-subhead" style="padding-bottom:10px">Trip End:{{booking.dropTime | date : 'dd-MMM-yyyy , hh:mm a'}}</span>
+                      <span class="md-subhead" style="padding-bottom:10px">Cost: <i class="fa fa-inr" aria-hidden="true"></i> {{booking.totalCost}}</span>
+                  </div>
+              </div>
+          </md-card>
+        </div>
+    </div>
+</div>

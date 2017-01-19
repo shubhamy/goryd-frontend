@@ -1,0 +1,69 @@
+<div ng-controller="RightCtrl" class="visible-md visible-lg">
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-xs')" style="height:91vh;">
+    <md-subheader class="md-no-sticky" style="padding-top: 8px">
+      {{listings.length}}
+      Results
+    </md-subheader>
+    <md-content>
+      <div ng-repeat="listing in listings track by $index" style="height:auto;" ng-mouseenter="highlightListingMarker(listings,$index)">
+        <md-card class="md-whiteframe-3dp">
+          <div layout="column">
+            <div layout="row" style="max-height:200px; padding:16px 10px 10px 10px">
+              <div layout="column" flex='30' layout-align="center center">
+                <img ng-src="{{listing.media[0].attachment | mediaAssetcar}}" class="md-avatar" alt="car Photo" style="width:133px;height:100px;margin-right:15%;max-height:55px;max-width:55px;border:1px solid grey;border-radius:55px;" layout="row" />
+              </div>
+              <div layout="column" layout-align="start none" style="width:100%">
+                <h3 class="zero-margin" style="text-align:left;text-transform:capitalize">
+                  {{listing.maker}}
+                </h3>
+                <div flex layout="row">
+                  <div flex="30">
+                    <h4 class="zero-margin" style="text-align:left;color:#757575;text-transform:capitalize">
+                      {{listing.model}}
+                    </h4>
+                  </div>
+                  <div flex="70">
+                    <h5 class="zero-margin" style="text-align:right;color:#757575;text-transform:none">
+                      {{listing.distance}}s away
+                    </h5>
+                  </div>
+                </div>
+                <div style="padding-top:10px;width:100%" layout="row">
+                  <div flex layout="row"  layout-align="start center">
+                    <jk-rating-stars id="rateCar" max-rating="5" rating="listing.rating" read-only="true" class='star-rating'>
+                    </jk-rating-stars>
+                    <span class="rating-float-nu" style="color:#616161;padding-left:15px;">({{0+listing.rating}})</span>
+                  </div>
+                  <div flex='70'>
+                    <h5 class="zero-margin" style="text-align: right;color:#757575;text-transform:capitalize">
+                      {{listing.gearType}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" layout-align="start  start" style="max-height:100px; padding:16px;">
+              <div flex="35">
+                <span class="md-subhead" style="padding-bottom:10px;font-size:14px;font-family:Roboto;">Rent:
+                  <i class="fa fa-inr" aria-hidden="true"></i>
+                  {{listing.totalCost}}
+                </span>
+              </div>
+              <div flex="65">
+                <span class="md-subhead" style="padding-bottom:10px;font-size:14px;font-family:Roboto;">
+                  Security Deposit:
+                  <i class="fa fa-inr" aria-hidden="true"></i>
+                  {{listing.deposit}}
+                </span>
+              </div>
+            </div>
+            <div layout="row" layout-align="center center">
+              <md-button ng-click="sendBookingRequest($index)" style="width:100%">Book now</md-button>
+            </div>
+          </div>
+        </md-card>
+      </div>
+    </md-content>
+  </md-sidenav>
+</div>

@@ -1,0 +1,47 @@
+<div ng-click="toggleAccountsSidenav()" ng-show="isgridViewActive" style="position:fixed;top:18px;left:20px;z-index:100;" hide-sm hide-xs >
+  <i class="fa fa-bars" aria-hidden="true" style="font-size:26px;color:#ffffff"></i>
+</div>
+<div style="padding-top:50px; min-height:100vh" layout="column" layout-align="start none">
+  <div layout="row" layout-align="start start" class="accounts-wrap" >
+      <md-sidenav style="position:fixed;height:100vh;top:50px;"  hide-sm hide-xs class="md-sidenav-left md-whiteframe-z2 sidebar sidenavAnim{{accountsSidenav}}"  md-is-locked-open="$mdMedia('gt-sm')"  md-component-id="left" >
+        <div  ng-if="$state.is('accounts')||$state.is('accounts.profile')||$state.is('accounts.requested')||$state.is('accounts.ongoing')||$state.is('accounts.completed')||$state.is('accounts.contactUs')||$state.is('accounts.sendMail')">
+            <md-toolbar class="md-theme-indigo" style="height:40px;background-color:#314554;">
+                <h1 class="md-toolbar-tools" style="padding-top:13px">My Account</h1>
+            </md-toolbar>
+            <ul id="menuAccounts" class="account-sidenav-ele">
+                <li ng-click="$state.go('accounts.profile');toggleProfilemenu();" md-button>
+                    <span style="font-size:18px;"><i class="material-icons"style="position:relative;top:8px;padding-right:11px;height:18px;">account_circle</i></span>Edit my profile
+                </li>
+                <div class="order-slide-{{firstheadActive==true ? 'up' : 'down'}}">
+                  <li md-button  ng-click="toggleOrdermenu();isAccountsSidenavOpen=true;"><i class="fa fa-car fa-md-menu-content" style="font-size:18px;width:35px" aria-hidden="true"></i>
+                      <i class="fa fa-chevron-down arrow1-{{firstheadActive==true ? 'up' : 'down'}} "  style="align:left;font-size:12px;" aria-hidden="true"></i>My bookings
+                  </li>
+                  <div class="slideDown1" ng-hide="!firstheadActive">
+                    <ul  class="account-sub-menu">
+                        <li md-button ng-click="$state.go('accounts.requested');">Requested Bookings</li>
+                        <li md-button ng-click="$state.go('accounts.ongoing');">Upcoming Bookings</li>
+                        <li md-button ng-click="$state.go('accounts.completed');">Past Bookings</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="support-slide-{{secondheadActive==true ? 'up' : 'down'}}">
+                  <li md-button ng-click="toggleSupportmenu()"><i class="fa fa-phone fa-md-menu-content" style="font-size:18px;width:35px" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down arrow1-{{secondheadActive==true ? 'up' : 'down'}} "  style="align:left;font-size:12px;"     aria-hidden="true"></i>Need help?
+                  </li>
+                  <div class="slideDown2" ng-hide="!secondheadActive">
+                    <ul  class="account-sub-menu">
+                      <li md-button ng-click="$state.go('accounts.sendMail');"  >Support</li>
+                      <li md-button ng-click="$state.go('accounts.contactUs');" >Contact Us</li>
+                    </ul>
+                  </div>
+                </div>
+              </ul>
+        </div>
+      </md-sidenav>
+      <div  layout="column" class="content{{listViewClass}}"  layout-align="start start" >
+        <div layout="column" layout-fill>
+            <div ui-view></div>
+        </div>
+      </div>
+  </div>
+</div>

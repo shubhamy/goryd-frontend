@@ -1,0 +1,54 @@
+<md-card class="login-md-card"  style="margin:auto; z-index:200">
+    <div style="height:60px">
+      <div style="padding:16px">
+        <p style="font-size:20px;color:black;opacity:0.87;float:left;">Login</p>
+      </div>
+    </div>
+    <md-divider></md-divider>
+    <div style="margin: 24px 16px;">
+        <div style="margin:auto;" class="iphone5-hide-img">
+            <img src="http://icons.iconarchive.com/icons/graphicloads/flat-finance/256/person-icon.png" style="border-radius:50%;height:75px;vertical-align:top;width:75px;margin:auto;">
+        </div>
+        <div style="margin: 0 36px 0;" layout="column">
+          <form name="registerForm">
+            <div layout="column">
+              <md-input-container style="width:100%;margin:0;">
+                <label class="login-label">Email/Mobile no.</label>
+                <input class="login-input-cont" ng-model="loginForm.username" >
+              </md-input-container>
+              <md-input-container  style="width:100%;margin:0;">
+                <label class="login-label" >Password</label>
+                <input class="login-input-cont" ng-model="loginForm.password" type="password" ng-required="data.showRegister">>
+              </md-input-container>
+              <md-button  ng-click="login()"  style="background-color:#1f3c8e;width:100%;margin:auto;margin-top:18px;font-size:14px;color:white;">LOG IN</md-button>
+              <a style="font-size:14px;color:black;opacity:0.57;text-align:left;margin:16px 0;text-transform:lowecase;cursor:pointer;" ng-click="OTPformtrue()">Forget password?</a>
+            </div>
+            <div layout="row" style="margin:0 auto 16px auto;">
+              <div flex="45" style="margin:">
+                <md-button href="http://example2.com:8000/login/facebook/" style="background-color:#3B5998;width:100%;margin:auto;font-size:14px;color:white; text-transform:none;">
+                  <i class="fa fa-facebook fa-social-icon" aria-hidden="true" style="margin-left:3px;font-size:16px;">
+                  </i>
+                  <span hide-xs style="margin-left:15px">
+                    Facebook
+                  </span>
+                </md-button>
+              </div>
+              <div flex="10"></div>
+              <div flex="45">
+                <md-button href='http://example2.com:8000/login/google-oauth2/' style="background-color:#DB4437;width:100%;margin:auto;font-size:14px;color:white; text-transform:none;">
+                  <i class="fa fa-google-plus fa-social-icon" aria-hidden="true"  style="margin-left:3px;font-size:16px;"></i>
+                  <span hide-xs style="margin-left:15px">
+                    Google
+                  </span>
+                </md-button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <div style="margin:0;padding:16px;width:100%" md-raised md-button layout="row" layout-align=" center center" ng-click="registration()" >
+        <p style="font-size:16px;color:black;opacity:0.57;margin:auto;">Register Now!</p>
+    </div>
+  </div>
+</md-card>

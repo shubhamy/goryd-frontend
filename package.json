@@ -1,0 +1,39 @@
+{
+  "name": "goryd-frontend",
+  "version": "1.0.0",
+  "description": "goryd frontend repository",
+  "main": "app/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@goryd.in:goryd-frontend"
+  },
+  "author": "Goryd Team <admin@goryd.in>",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "dgeni": "^0.4.2",
+    "dgeni-packages": "^0.13.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.0.0",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-minify": "0.0.11",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "gulp-uglifycss": "^1.0.6",
+    "gulp-util": "^3.0.7",
+    "jasmine": "^2.4.1",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "run-sequence": "^1.2.0"
+  }
+}

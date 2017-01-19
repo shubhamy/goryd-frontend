@@ -1,0 +1,495 @@
+<div class="container-fluid {{ formLevel == 'intro'?  'share-landing':''}} calendar-style" style="margin-top: 80px;">
+  <div>
+    <h2 style="margin: 0 0 0 0;">
+      List your car
+    </h2>
+    <p style="margin: 0 0 0 0; size: 16px; color: grey; padding-bottom: 20px; border-bottom: solid 1px">
+      Goryd lets you earn money by sharing your car
+    </p>
+  </div>
+
+  <generic-Wizard step-List="['basic information','locate your car','Upload Documents','rent and availability','review your listing']" current-Step-Var="formLevel" restrict-Movemarker='true' show-Nextprev='false'>
+  </generic-Wizard>
+
+  <section layout="row" ng-if="formLevel == 'basic information'" style="background:white;padding-bottom:200px;padding-top:100px;">
+    <div layout="column" flex flex-offset-gt-sm="25" flex-gt-sm="50" class="text-left">
+      <form name='formaddress'>
+        <md-card>
+          <md-card-title>
+            <md-card-title-text style="text-align:left;">
+              <span class="md-subhead" style="padding-bottom:10px">
+                <div layout="row" class='listingBorder'>
+                  <div flex>
+                    Car:
+                    <br/>
+                    <br/>
+                  </div>
+                  <div flex>
+                    {{form.model}}
+                    <br/>
+                  </div>
+                </div>
+                <div layout="row" class='listingBorder'>
+                  <div flex>
+                    Make:
+                    <br/>
+                  </div>
+                  <div flex>
+                    {{form.maker}}
+                    <br/><br/>
+                  </div>
+                </div>
+                <div layout="row" class='listingBorder'>
+                  <div flex>
+                    Year:
+                    <br/>
+                  </div>
+                  <div flex>
+                    {{form.year}}
+                    <br/><br/>
+                  </div>
+                </div>
+                <div layout="row" class='listingBorder'>
+                  <div flex>
+                    Transmission type:<br/>
+                  </div>
+                  <div flex>
+                    {{form.gear}}<br/>
+                    <br/>
+                  </div>
+                </div>
+                <div layout="row" class='listingBorder'>
+                  <div flex>
+                    Registration number:
+                    <br/>
+                  </div>
+                  <div flex>
+                    {{form.regNum}}
+                    <br/><br/>
+                  </div>
+                </div>
+              </span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-card>
+        <br/>
+        <br/>
+        <md-input-container md-no-float class="md-block" ng-mouseenter="addressFlag=true" ng-mouseleave=addressFlag=false>
+          <input id="address2" aria-label="Address" places-auto-complete component-restrictions="{country:'in'}" type="text" ng-model="form.address2" placeholder="Tell us complete pick up address of your car" on-place-changed="initialCenterMap()"/>
+          <div ng-messages id="info" ng-show="addressFlag">
+            <div style="padding:0px;font-size:13px;">
+              This is the pickup address from where renters can pick your car.
+            </div>
+          </div>
+        </md-input-container>
+        <div layout-gt-sm="row">
+          <md-input-container required class="md-block" flex-gt-sm>
+            <label>City</label>
+            <input ng-model="form.city" />
+          </md-input-container>
+          <md-input-container required class="md-block" flex-gt-sm>
+            <label>State</label>
+            <md-select ng-model="form.state">
+              <md-option ng-repeat="state in states" value="{{state}}">
+                {{state}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container required class="md-block" flex-gt-sm>
+            <label>Postal Code</label>
+            <input name="postalCode" ng-model="form.pincode" placeholder="123456" md-maxlength="6" />
+          </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+          <md-button class="md-raised md-default" style="margin:30px" ng-click="postAddress()">
+            Next
+          </md-button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section ng-if="formLevel == 'locate your car'" style="background:white;min-height:100vh;padding-top:50px;">
+    <p style="font-size: 15px; font-family: Roboto; color: #C80032">
+      Is that you located on the map? If yes, press next. If no, drag the map to locate yourself.
+    </p>
+    <ng-map center="{{addressPicker.initialCenter}}" style="height: 60vh;" flex="60" flex-offset="20" on-center-changed="centerChanged()" zoom="15" scrollwheel="false">
+      <marker position="{{addressPicker.center}}"></marker>
+    </ng-map>
+    <md-button class="md-raised md-default" style="margin:30px" ng-click="postAddressCoordinates()">
+      Next
+    </md-button>
+  </section>
+
+  <section layout="row" layout-align="center start" ng-if="formLevel == 'Upload Documents'" style="background: white;padding-top: 50px;min-height: 100vh">
+    <div layout="column" layout-align="center center">
+      <div flex>
+        <h3 style="text-transform:none; font-family:Roboto;">
+          Help renters judge your car better by uploading car photos
+        </h3>
+        <p style="font-family:Roboto; text-align:justify; font-size: 15px">
+          Upload the photos of the followin documents
+          <br />
+          1. Registration paper of your car
+          <br />
+          2. Insurance paper of your car
+          <br />
+          3. fitness certificate (if applicable)
+          <br />
+          4. Pollution certificate
+        </p>
+        <br />
+        <p style="font-family:Roboto; text-align:justify; font-size: 15px">
+          Upload clear photos of your car
+          <br />
+          1. Front of your car (clearly showing your car plate)
+          <br />
+          3. Left-side of your car.
+          <br />
+          4. Back of your car
+          <br />
+          5. The coolest pic of your car which you can make as a display pic(DP).
+          <br />
+          DP will be visible to everyone who will search for your car.
+        </p>
+      </div>
+
+      <div flex>
+        <button class="md-raised md-default" style="margin:30px" ngf-select ng-model="files" name="files" multiple accept="image/*" ngf-max-files="6" md-button>
+          Upload Documents
+        </button>
+        <div ng-show="error">
+          Please do not upload more than 6 photos.
+        </div>
+      </div>
+
+      <md-card layout="row" class="md-whiteframe-2dp" ng-init="showimages=false"layout-wrap layout-align="center center" style="max-width:700px;">
+        <md-card layout-wrap ng-repeat="i in count" style="font:smaller; display: inline;margin:5px;max-width:200px" ng-init="dp[0]=='dp'">
+          <img ng-src="{{listing.media[i].attachment | mediaAssetcar}}" class="normalPhoto" style="height:200px;width:200px;" />
+          <i class="fa fa-times phototick" style="position:relative; top:-190px; right:-10px; font-size:24px; color:#b71c1c; float:left;" ng-show="listing.media" ng-click="deleteimage(listing.media[i],$index);" aria-hidden="true"></i>
+        </md-card>
+      </md-card>
+
+      <md-card layout="row" class="md-whiteframe-2dp" layout-wrap layout-align="center center" style="max-width:700px;">
+        <md-card layout-wrap ng-repeat="f in files track by $index" style="font:smaller; display: inline;margin:5px;max-width:200px" ng-init="dp[0]=='dp'">
+          <img ngf-thumbnail="f" class="normalPhoto" style="height:200px;width:200px;" />
+          <i class="fa fa-times photoUntick" ng-click="files.splice($index,1);f=null" style="position:relative; top:-190px; right:-10px; font-size:24px; color:#b71c1c; float:left;" ng-show="f" aria-hidden="true"></i>
+          {{f.name}}
+        </md-card>
+      </md-card>
+      <md-button ng-show ='files.length>0' ng-click='confirmPhotos(files);showimages=true' class="md-raised md-default" style="margin:30px;">
+        Confirm Photos
+      </md-button>
+      <p style="font-family:Roboto; text-align:justify; font-size: 15px" ng-show ='files1.length>0'>
+        The following photos will be uploaded.
+      </p>
+      <md-card layout="row" class="md-whiteframe-2dp" layout-wrap layout-align="center center" style="max-width:700px;">
+        <md-card layout-wrap ng-repeat="f in files1 track by $index" style="font:smaller; display:inline; margin:5px; max-width:200px" ng-click="mainPhoto(files1,$index)" ng-init="dp[0]=='dp'">
+          <img ngf-thumbnail="f" class=" {{dp[$index]=='dp'? 'highlightedPhoto':'normalPhoto'}}" style="height:200px;width:200px;" />
+          <i class="fa fa-times {{dp[$index]=='dp' ? 'photoUntick':'photoTick'}}" ng-click="files1.splice($index,1);dp.splice($index,1);f=null" style="position:relative; top:-190px; right:-10px; font-size:24px; color:#b71c1c; float:left;" ng-show="f" aria-hidden="true"></i>
+          <i class="fa fa-check {{dp[$index]=='dp' ? 'photoTick':'photoUntick'}}" style="position:relative;top: -190px;right: -165px;float: left;color:green;" aria-hidden="true"></i>
+        </md-card>
+        <md-card layout-wrap ng-show='showimages' ng-repeat="i in count" style="font:smaller; display:inline; margin:5px; max-width:200px" ng-click="setDP(files1,$index)">
+          <img ng-src="{{listing.media[i].attachment | mediaAssetcar}}"
+          class="{{listing.media[$index].name=='dp'? 'highlightedPhoto':'normalPhoto'}}" style="height:200px;width:200px;" />
+          <i class="fa fa-check {{listing.media[$index].name=='dp' ? 'photoTick':'photoUntick'}}" style="position:relative;top: -190px;right: -165px;float: left;color:green;" aria-hidden="true"></i>
+        </md-card>
+      </md-card>
+      <div ng-show="files1.length>0">
+        Please select exactly one photo to make it display picture(DP). The DP will be marked as
+        <i class="fa fa-check photoTick" style="color:green;"></i>
+      </div>
+      <md-button ng-show="files1.length>0" class="md-raised md-default" ng-click="submitFiles(files1)" style="margin:30px;">
+        Next
+      </md-button>
+    </div>
+  </section>
+
+  <section layout="column" layout-align="start center" ng-if="formLevel == 'rent and availability'" style="background:white; padding-top:50px; min-height:100vh;">
+    <h3 style="font-family: Roboto; text-transform: none">
+      Specify security deposit and daily rent
+    </h3>
+    <div style="font-family: Roboto; text-align:justify; width:600px; color: #C80032">
+      <sup>*</sup>You can choose to have different weekday and weekend rents. For example, you can charge Rs. 2000/day during weekdays and Rs. 2500/day during weekends. All numbers are in INR.
+    </div>
+    <div class="text-left pull-left" layout="row" style="max-height:50px; padding-bottom:150px; padding-top:50px">
+      <md-input-container class="md-block" flex-gt-sm ng-mouseenter="depositFlag=true" ng-mouseleave="depositFlag=false">
+        <label>Security Deposit</label>
+        <input ng-model="priceForm.deposit" />
+        <div ng-messages id="info" ng-show="depositFlag">
+          <div style="padding:0px; font-size:13px;">
+            Note that this amount is completely refundable to the renters. Our recommended price: Rs. 3000
+          </div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-sm ng-mouseenter="weekdayRentFlag=true" ng-mouseleave="weekdayRentFlag=false">
+        <label>Weekday rent</label>
+        <input ng-model="priceForm.priceweekday" />
+        <div ng-messages id="info" ng-show="weekdayRentFlag">
+          <div style="padding:0px; font-size:13px;">
+            Our recommended weekday price is Rs. 2000/day for a car worth Rs. 10 Lakhs
+          </div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-sm ng-mouseenter="weekendRentFlag=true" ng-mouseleave="weekendRentFlag=false">
+        <label>Weekend rent</label>
+        <input ng-model="priceForm.priceweekend" />
+        <div ng-messages id="info" ng-show="weekendRentFlag">
+          <div style="padding:0px;font-size:13px;">
+            We recommend 20% increment during weekends. So, our recommended weekend price is Rs. 2400/day for a car worth Rs. 10 Lakhs
+          </div>
+        </div>
+      </md-input-container>
+    </div>
+
+    <style>
+      calendar-md md-content > md-content.calendar > :not(:first-child) > *.active {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+        background: rgba(0, 150, 0, 0.5);
+        overflow-x: visible;
+      }
+      calendar-md .md-toolbar-tools h2 {
+        overflow-x: visible;
+      }
+    </style>
+
+    <h3 style="font-family: Roboto; text-transform: none">
+      Mark the availabilities of your car for rent
+    </h3>
+    <div style="font-family: Roboto; text-align:justify; width:600px; color: #C80032">
+      <sup>*</sup>Select all the days for which you want to rent out your car. Note that a rent request will come to you only if your car is available all the days for which the renter wants to rent.
+    </div>
+    <div ng-controller="calendarCtrl">
+      <calendar-md
+        flex
+        layout
+        layout-fill
+        style="height:80vh;width:100vh;padding-top:20px"
+        on-prev-month="prevMonthMain"
+        on-next-month="nextMonthMain"
+        on-day-click="dayClickMain"
+        title-format="'MMMM y'"
+        ng-model="selectedDateMain"
+        week-starts-on="firstDayOfWeekMain"
+        data-start-month=""
+        data-start-year="2016"
+        tooltips="tooltipsMain"
+        day-format="dayFormatMain"
+        day-label-format="'EEE'"
+        day-label-tooltip-format="'EEEE'"
+        day-tooltip-format="'fullDate'"
+        day-content="setDayContentMain"
+        disable-future-selection="false">
+      </calendar-md>
+    </div>
+    <md-button class="md-raised md-default" ng-click="postPrice()" style="margin:30px;">
+      Next
+    </md-button>
+  </section>
+
+  <section ng-if="formLevel == 'review your listing'" layout="column" layout-align="start none" style="padding-top:100px; min-height:100vh;">
+    <h1 style="text-transform:none; padding-bottom:2em">
+      Review Your Listing
+    </h1>
+    <div layout="row" layout-sm="column" layout-xs="column" layout-align="center none">
+      <div flex-gt-sm='40' flex-offset-gt-sm='5'>
+        <md-card>
+          <md-card-title>
+            <md-card-title-text style="text-align:left;">
+              <span class="md-subhead" style="padding-bottom:10px">
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Car:
+                      <br/>
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.model}}
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Make:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.maker}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Year:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.year}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Kms:
+                      <br/>
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.kms}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Transmission Type:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.gearType}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Registration No:<br/>
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.regNum}}<br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Street:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.address.street}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      City:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.address.city}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      State:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.address.state}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Weekday Price:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.weekdayPrice}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Weekend Price:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.weekendPrice}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                  <div layout="row" class='listingBorder'>
+                    <div flex>
+                      Deposit:
+                      <br/>
+                    </div>
+                    <div flex>
+                      {{reviewList.deposit}}
+                      <br/>
+                      <br/>
+                    </div>
+                  </div>
+                </span>
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+        </div>
+
+        <div flex-gt-sm='10'>
+
+        </div>
+
+        <div flex-gt-sm='40' layout="column">
+          <div flex>
+            <calendar-md
+              flex
+              layout
+              layout-fill
+              on-prev-month="prevMonth"
+              on-next-month="nextMonth"
+              title-format="'MMMM y'"
+              week-starts-on="firstDayOfWeek"
+              data-start-month=""
+              data-start-year=""
+              day-format="dayFormat"
+              day-label-format="'EEE'"
+              day-label-tooltip-format="'EEEE'"
+              day-tooltip-format="'fullDate'"
+              day-content="setDayContent"
+              disable-future-selection="false">
+            </calendar-md>
+          </div>
+          <div  layout="row" layout-align="center center" layout-wrap class="md-whiteframe-3dp" style="overflow:hidden; max-width:540px; max-height:500px;">
+            <div ng-repeat="w in [0]"  layout="row" layout-wrap>
+              <div ng-repeat="i in a"  layout="row">
+                <md-card class="listingPage-carImg" style="margin:5px" ng-click="imageDialogues($index)">
+                  <img style="display:block; border:0; width:150px; height:150px;" ng-src="{{reviewList.media[w*3 + i].attachment | mediaAssetcar}}">
+                  </img>
+                </md-card>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div flex='5'>
+
+        </div>
+      </div>
+      <div layout="row" layout-align="center">
+        <md-button class="md-raised md-default" style="margin:30px;" ng-click='submit()'>
+          Submit
+        </md-button>
+      </div>
+    </div>
+  </section>
+
+  <section ng-if="formLevel == 'thankyou'" class="text-center" style="background:white; padding-top:100px; min-height:100vh;">
+    <h1 style="font-family:Roboto">
+      Thank you for your listing.
+    </h1>
+    <p style="font-family:Roboto">
+      Our team will review your details and will get back to you soon.
+      <br />
+      For any query please write at support@goryd.in
+    </p>
+  </section>
+</div>

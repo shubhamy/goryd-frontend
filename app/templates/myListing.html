@@ -1,0 +1,31 @@
+<div layout="row" flex style="height:auto;min-height:100vh;" ng-cloak >
+    <div layout="row" class="listing-wrap" layout-align="start start" >
+    <md-sidenav style="position:fixed;top:50px;height:100vh;overflow:hidden;padding:0px;width:270px;z-index:1;" hide-sm hide-xs ng class="md-whiteframe-z2 sidebar" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-if="!$state.is('myListing.customerProfile')">
+        <md-content>
+            <div class="" layout="column" layout-align="center center" layout-wrap ng-if="$state.is('myListing')||$state.is('myListing.requested')||$state.is('myListing.completed')||$state.is('myListing.ongoing')||$state.is('myListing.earnings')||$state.is('myListing.listings');">
+                <md-toolbar class="md-theme-indigo" style="height:40px;background-color:#314554;">
+                    <h1 class="md-toolbar-tools" style="padding-top:13px">
+                        Accounts</h1>
+                </md-toolbar>
+                <ul id="menuAccounts" class="account-sidenav-ele">
+                    <li md-button ng-click="$state.go('myListing.requested');">Requested Trips</li>
+                    <li md-button ng-click="$state.go('myListing.ongoing');">Upcoming Trips</li>
+                    <li md-button ng-click="$state.go('myListing.completed');">Past Trips</li>
+                    <!-- <li md-button ng-click="$state.go('myListing.earnings');">Earnings</li> -->
+                    <li md-button ng-click="$state.go('myListing.listings');">My cars</li>
+                </ul>
+            </div>
+        </md-content>
+    </md-sidenav>
+    <md-content class="content"  ng-if="!$state.is('myListing.customerProfile')"layout="column" layout-align="start start" style="padding-top:60px;">
+        <div layout="column" layout-fill>
+            <div ui-view></div>
+        </div>
+    </md-content>
+    <md-content  ng-if="$state.is('myListing.customerProfile')" layout="column" layout-align="start start" style="padding-top:60px;">
+        <div layout="column" layout-fill>
+            <div ui-view></div>
+        </div>
+    </md-content>
+  </div>
+</div>

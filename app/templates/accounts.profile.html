@@ -1,0 +1,138 @@
+<div  ng-show="loadingIconUpdateProfile" style="position:fixed;background-color:black;opacity:0.3;top:0;left:0;width:100%;height:100%;z-index:200;">
+</div>
+<div  ng-show="loadingIconUpdateProfile"   class=" loading-spinner text-center" style="position:fixed;height:100vh;left:0px;top:0px;z-index:100000;overflow:hidden;background:transparent;">
+  <div class="loader" layout="row" style="height:100%;overflow:hidden;" layout-align="center center">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"stroke-miterlimit="10"/>
+    </svg>
+    <p style="font-size:15px;color:#0433BC">Loading</p>
+  </div>
+</div>
+<div style="min-height:100vh;max-width:1000px;margin:auto;">
+  <div ng-cloak  style="margin-bottom:60px">
+    <md-card class="md-whiteframe-z1" layout-gt-sm="row" layout="column" style="min-height:200px;">
+      <div layout="column" flex-gt-sm="40" flex="100" layout-align="center center" ng-mouseenter="profileChangeButtonAppear()" ng-mouseleave="profileChangeButtonHide()" style="background-color:#eee;height:200px;">
+        <div  class="show-img" layout="column" ng-if="dpfiles==null || showProfileImage==true">
+          <img  style="height:200px;width:200px;border-radius:50%;" ng-src="{{profileImage | mediaAsset}}"/>
+        </div>
+        <div  class="show-img" layout="column" ng-if="dpfiles!=null && showProfileImage==false">
+          <img ng-src="{{i}}" style="height:200px;width:200px;border-radius:50%;">
+        </div>
+        <button class="profile-imghover-btn {{buttonStateOnhoverProfile}}" ngf-select ng-model="dpfiles" name="dpfiles" multiple accept="image/*"  ngf-max-files="1"><i class="fa fa-camera " style="color:white;font-size:18px;padding-top:3px;"></i></button>
+      </div>
+      <div layout="column" ng-show="!userProfileEdit"  flex-gt-sm="50" layout-align="center center" style="min-height:100px;">
+        <div  class="user-details-div {{userDetailsEditAnim}}">
+          <h2 style="margin:0 0 10px 0;text-transform:capitalize;font-size:24px">{{firstname}} {{lastname}}</h2>
+          <h4 style="color:black;opacity:0.54;font-size:16px">{{mobileno}}</h4>
+        </div>
+      </div>
+      <div layout="column" ng-hide="!userProfileEdit" flex-gt-sm="50" flex layout-align="center center" style="min-height:200px;">
+        <div layout="column"  class="user-details-div2 {{userDetailsEditAnim}}-show">
+          <div layout-gt-xs="row" >
+            <md-input-container   style="margin:18px 18px 0px 18px;">
+              <label class="profile-label">Firstname</label>
+              <input class="profile-input" ng-model="firstname">
+            </md-input-container>
+            <md-input-container  style="margin:18px 18px 0px 18px;">
+              <label class="profile-label">Lastname</label>
+              <input class="profile-input" ng-model="lastname">
+            </md-input-container>
+          </div>
+          <div layout-gt-xs="row" layout-align="start center">
+            <md-input-container style="margin:18px 18px 0px 18px;">
+              <label class="profile-label">Phone</label>
+              <input class="profile-input" ng-model="mobileno">
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+      <div layout-gt-sm="column" layout="row" flex-gt-sm="10" >
+        <md-button   ng-show="!userProfileEdit" ng-click="toggleProfileEdit()" class="md-icon-button md-accent" style="margin:16px auto 0 auto;" aria-label="Favorite">
+          <i class="fa fa-pencil fa-lg" style="color:#616161;background-color:#fff"></i>
+        </md-button>
+        <md-button  ng-hide="!userProfileEdit" ng-click="toggleProfileEdit()" class="md-icon-button md-accent" style="margin:16px auto 0 auto;" aria-label="Favorite">
+          <i class="fa fa-check fa-lg" style="color:#616161;background-color:#fff"></i>
+        </md-button>
+        <md-button  ng-hide="!userProfileEdit" ng-click="clearAlluserDetails  ()" class="md-icon-button md-accent" style="margin:16px auto 0 auto;" aria-label="Favorite">
+          <i class="fa fa-trash fa-lg" style="color:#616161;background-color:#fff"></i>
+        </md-button>
+      </div>
+    </md-card>
+    <div layout-gt-sm="row" layout="column">
+      <md-card style="margin:8px 4px 8px 8px;min-width:250px;" flex="50">
+        <div style="background-color:#eee">
+          <div layout="column" ng-if="DLfiles==null">
+            <img class="" style="height:200px;width:100%;min-width:250px;margin:auto;border: 1px solid #ddd" ng-src="{{licenseImage | mediaAssetID}}"/>
+          </div>
+          <div layout="column" ng-if="DLfiles!=null" >
+            <li ng-repeat="q in DLfiles" style="font:smaller; display: inline;">
+              <img ngf-thumbnail="q" class="normalPhoto" style="height:200px;width:100%;min-width:250px;margin:auto;border: 1px solid #ddd">
+            </li>
+          </div>
+        </div>
+        <div style="text-align:left;padding:16px;">
+          <div layout="row" flex layout-align="end center " style="position:relative;top:-50px;float:right;" >
+            <button md-button class="md-fab how-it-works-rent-button" style="background-color:#1f3c8e;" aria-label="Edit" ngf-select ng-model="DLfiles" name="DLfiles" multiple accept="image/*" ngf-max-files="1">
+              <i class="fa fa-camera " style="color:white;font-size:24px;padding-top:17px;"></i>
+            </button>
+          </div>
+          <div layout="column">
+            <p style="font-size:20px;color:black;opacity:0.87;float:left;">Driving License</p>
+            <!-- <p style="font-size:16px;color:black;opacity:0.57;float:left;">Driving License</p> -->
+          </div>
+        </div>
+      </md-card>
+      <md-card flex="50" style="margin:8px 8px 8px 4px;min-width:250px;">
+        <div style="background-color:#eee">
+          <div layout="column" ng-if="IDfiles==null">
+            <img class="" style="height:200px;width:100%;min-width:250px;margin:auto;border: 1px solid #ddd" ng-src="{{IDImage | mediaAssetID}}"/>
+          </div>
+          <div layout="column" ng-if="IDfiles!=null">
+            <li ng-repeat="i in IDfiles" style="font:smaller; display: inline;">
+              <img ngf-thumbnail="i" class="normalPhoto" style="height:200px;width:100%;min-width:250px;margin:auto;border: 1px solid #ddd">
+            </li>
+          </div>
+        </div>
+        <div style="text-align:left;padding:16px;">
+          <div layout="row" flex layout-align="end center " style="position:relative;top:-50px;float:right;" >
+            <button md-button class="md-fab how-it-works-rent-button" style="background-color:#1f3c8e;" aria-label="Edit" ngf-select ng-model="IDfiles" name="IDfiles" multiple accept="image/*" md-button ngf-max-files="1">
+              <i class="fa fa-camera " style="color:white;font-size:24px;padding-top:17px;"></i>
+            </button>
+          </div>
+          <div layout="column">
+            <p  style="font-size:20px;color:black;opacity:0.87;float:left;">ID proof</p>
+            <!-- <p style="font-size:16px;color:black;opacity:0.57;float:left;">ID proof</p> -->
+          </div>
+        </div>
+      </md-card>
+    </div>
+    <md-card style="margin:0px 8px 8px 8px;">
+      <div style="padding:16px;" layout="column" layout-align="start start" >
+        <div layout="row" layout-align="center center" style="padding-top:16px">
+          <div flex="10">
+          <md-checkbox ng-model="dataConfirm" aria-label="Checkbox 1">
+          </md-checkbox>
+        </div>
+        <div flex="90">
+          <p style="font-size:14px;color:black;opacity:0.57;text-align:left">
+            I hereby declare that the details furnished above are true and correct to the best of my knowledge
+            and belief and I undertake to inform you of any changes therein, immediately
+          </p>
+        </div>
+        </div>
+        <div layout="row" layout-align="center center"  style="margin:auto;">
+          <md-button class="how-it-works-rent-button"  ng-disabled="!dataConfirm" style="" ng-click="postEditedProfile(dpfiles,DLfiles,IDfiles)">Save Profile</md-button>
+        </div>
+      </div>
+    </md-card>
+  </div>
+</div>
+<div ng-show="showProfileImage" id="item">
+</div>
+<div ng-hide="true"class="" id="item2">
+</div>
+<div ng-hide="true"class="">
+  <img ng-src="{{i}}" alt="" />
+</div>
+<div ng-hide="true"ng-if="dpfiles!=null"ng-init="readURL(dpfiles[0])"></div>
+<md-button ng-hide="true"ng-if="dpfiles!=null"ng-click="crop()">crop</md-button>

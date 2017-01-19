@@ -1,0 +1,32 @@
+<div layout="column" layout-align="center center">
+      <p style="font-size: 35px; margin: 0 0 0 0">Have a car that can earn for you?</p>
+        <md-button class="" ng-click="$state.go('listnow')" style="background-color: #314554; padding: 0 10px 0 10px;color:white;">Share it now</md-button>
+        <p style="color: #424242; padding:5px">
+          What makes Goryd experience great is the people listing their cars. They are awesome people like us who are sharing their cars with you so that you can have a memorable trip. We take pride in calling them our partners and we treat then with same values as we treat our guests.
+        </p>
+        <!-- <md-button class="md-raised" hide-gt-sm ng-click="$state.go('share')" ng-disabled='true'>Share it now(desktop only)</md-button> -->
+</div>
+<div layout="row" ng-init="marketPrice=10; rentedDays=20" layout-align="center center" layout-sm="column" layout-xs="column">
+    <div flex-gt-sm = '30'>
+        <p>You can earn upto</p>
+        <h2 style="color:#0e3752;"> &#8377{{rentedDays*marketPrice*100000/400}}</h2>
+        <p>per month</p>
+    </div>
+    <div flex-gt-sm = '60' layout="column">
+        <div flex>
+            <p>Adjust the sliders to estimate how much you can earn</p>
+        </div>
+        <div flex>
+            <label>I bought a car for
+                &#8377{{marketPrice}}
+                lakhs</label>
+            <md-slider ng-model="marketPrice" step="1" min="1" max="50" aria-label="marketPrice"></md-slider>
+        </div>
+        <div flex>
+            <label>I want to rent out my car for
+                {{rentedDays}}
+                days in a month</label>
+            <md-slider ng-model="rentedDays" step="1" min="0" max="31" aria-label="rentedDays"></md-slider>
+        </div>
+    </div>
+</div>

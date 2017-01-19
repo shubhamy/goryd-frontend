@@ -1,0 +1,98 @@
+<!-- <div  ng-show="loadingIconRegister" style="position:fixed;background-color:black;opacity:0.3;top:0;left:0;width:100%;height:100%;z-index:200;">
+</div>
+<div  ng-show="loadingIconRegister"   class=" loading-spinner text-center" style="position:fixed;height:100vh;left:0px;z-index:100000;overflow:hidden;background:transparent;">
+  <div class="loader" layout="row" style="height:100%;overflow:hidden;" layout-align="center center">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"stroke-miterlimit="10"/>
+    </svg>
+    <p style="font-size:15px;color:#0433BC">Loading</p>
+  </div>
+</div> -->
+<md-dialog aria-label="Register"  style="max-height:100%;max-width:100%;background:#fafaff;" ng-cloak ng-controller='main'>
+  <div style="max-width:800px;margin:0;"  class="{{toggleCardState-card-div}}">
+      <div style="height:60px" layout="row">
+        <div style="padding:16px" flex="90">
+          <p style="font-size:20px;color:black;opacity:0.87;float:left;">Register</p>
+        </div>
+        <div style="margin-right:0px;;padding:16px;" flex="10">
+          <i class="fa fa-times" style="font-size:24px" ng-click="cancel();" aria-hidden="true"></i>
+        </div>
+      </div>
+      <md-divider></md-divider>
+      <div style="margin: 24px 16px;">
+          <!-- <div style="margin:auto;" class="iphone5-hide-img">
+              <img src="http://icons.iconarchive.com/icons/graphicloads/flat-finance/256/person-icon.png" style="border-radius:50%;height:75px;vertical-align:top;width:75px;margin:auto;">
+          </div> -->
+          <div style="margin: 0 36px 0;" layout="column">
+            <form name="registrationForm">
+              <div layout="column">
+                <div layout-gt-xs="row" layout="column" >
+                  <div layout="row" class="registration-layout-xs" flex="60">
+                    <md-icon md-svg-src="img/icons/ic_person_24px.svg" style="color:black;opacity:0.54;position:relative;top:5px;" class="name"></md-icon>
+                    <md-input-container style="margin-left:10px;"  flex>
+                      <label class="login-label">Name</label>
+                      <input class="login-input-cont"  ng-required="true" ng-disabled = 'isFB' ng-model="form.name" type="text">
+                    </md-input-container>
+                  </div>
+                  <div layout="row" class="registration-layout-xs" flex="40">
+                    <md-icon md-svg-src="images/ic_date_range_black_24px.svg" style="color:black;opacity:0.54;position:relative;top:5px;" class="name"></md-icon>
+                    <md-input-container flex   style="margin-left:10px;">
+                      <label class="login-label">DOB (dd-MM-yyyy)</label>
+                      <input class="login-input-cont" ng-model="form.birthday" ng-disabled = 'isFB' ng-pattern="/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/" required type="text">
+                    </md-input-container>
+                  </div>
+                </div>
+
+                <div layout-gt-xs="row" layout="column">
+                  <div layout="row" class="registration-layout-xs" flex="40">
+                    <md-icon md-svg-src="img/icons/ic_phone_24px.svg" style="color:black;opacity:0.54;position:relative;top:5px;" class="name"></md-icon>
+                    <md-input-container style="margin-left:10px;" flex>
+                        <label class="login-label">Mobile No.</label>
+                        <input class="login-input-cont" ng-model="form.mobile" ng-pattern="/^[0-9]{10,10}$/" required type="text">
+                    </md-input-container>
+                  </div>
+                  <div layout="row" class="registration-layout-xs" flex="60">
+                    <md-icon md-svg-src="img/icons/ic_email_24px.svg" style="color:black;opacity:0.54;position:relative;top:5px;" class="email"></md-icon>
+                    <md-input-container flex style="margin-left:10px;">
+                      <label class="login-label">Email</label>
+                      <input class="login-input-cont" ng-required="true" ng-model="form.email" ng-disabled = 'isFB' type="email" ng-pattern="/^.+@.+\..+$/">
+                    </md-input-container>
+                  </div>
+                </div>
+
+                <div layout-gt-xs="row" layout="column" >
+                  <div layout="row" class="registration-layout-xs" flex="50">
+                    <md-icon md-svg-src="images/ic_lock_black_24px.svg" style="color:black;opacity:0.54;position:relative;top:5px;"></md-icon>
+                    <md-input-container style="margin-left:10px;" flex>
+                      <label class="login-label">New Password</label>
+                      <input class="login-input-cont" ng-model="form.password" required type="password">
+                    </md-input-container>
+                  </div>
+                  <div layout="row" class="registration-layout-xs" flex="50">
+                    <md-icon md-svg-src="images/ic_lock_black_24px.svg" style="color:black;opacity:0.54;position:relative;top:5px;" ></md-icon>
+                    <md-input-container flex  style="margin-left:10px;">
+                        <label class="login-label">Confirm Password</label>
+                        <input class="login-input-cont" ng-model="form.confirmPassword" required type="password">
+                    </md-input-container>
+                  </div>
+                </div>
+                <div layout="row"  >
+                  <div layout="column" layout-align="center center" flex="10">
+                    <md-checkbox ng-model="registrationConfirm" style="margin:auto;" aria-label="Checkbox 1" >
+                    </md-checkbox>
+                  </div>
+                  <div flex="90">
+                    <p  style="font-size:14px;color:black;opacity:0.67;text-align:left;margin:16px 0;">By submiting the form, you agree to our
+                      <a href= '#terms' style="font-size:14px;color:black;color:#1f3c8e;opacity:0.87;" ng-click="cancel()">
+                        Terms and conditions
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <md-button  ng-disabled="loadingIconRegister || registrationForm.$invalid || !registrationConfirm" ng-click="registerOTPtrue(form);" target="" style="width:100%;margin:auto;margin-top:18px;font-size:14px;color:black;opacity:0.87;">Submit</md-button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+</md-dialog>

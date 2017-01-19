@@ -1,0 +1,31 @@
+<md-card class="md-whiteframe-3dp" ng-controller='main' style="max-width:270px;max-height:500px;float:left;">
+  <div layout='column' style="max-width:270px;max-height:500px;">
+    <h5 style="margin-bottom:0px;padding-bottom: 2px;padding-left: 10px;opacity:0.8;">
+      You have an incomplete listing.
+      <br/>
+      Want to finish it first?
+    </h5>
+    <div flex style="background-color:#4a7ab0;" style="width:270px;height:202px">
+      <img ng-src="{{isListingcomp.media[0].attachment | mediaAssetcar}}" class="md-card-image" alt="car Photo" style="width:270px;height:202px">
+    </div>
+    <div flex style=" text-align:left;padding:16px 16px 16px 16px;" layout="column">
+      <div layout="row" layout-align="start end" style="padding:10px 0 10px 0;">
+        <h4 style="margin-bottom:0px">
+          {{isListingcomp.model}}
+        </h4>
+        <h5 style="margin-bottom:0px;padding-bottom: 2px;padding-left: 10px;opacity:0.8;">
+          {{isListingcomp.maker}}
+        </h5>
+      </div>
+      <md-divider></md-divider>
+      <span class="md-subhead" style="padding-bottom:10px">
+        Registration No.: {{isListingcomp.regNum}}
+      </span>
+      <div flex layout="row" layout-align="center center">
+        <md-button class="yes-button" ng-click="yes()">Yes</md-button>
+        <md-button class="no-button" ng-click="no()">No</md-button>
+        <md-button class="delete-button" ng-click="delete()">Delete</md-button>
+      </div>
+    </div>
+  </div>
+</md-card>
